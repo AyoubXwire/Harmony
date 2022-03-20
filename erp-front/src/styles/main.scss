@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.navigation {
+    background-color: #90dbdb;
+    
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+
+            li {
+                margin: 0 20px;
+
+                a {
+                    text-decoration: none;
+                    color: black;
+                }
+            }
+        }
+    }
+}
+
+.user-card {
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    align-items: flex-start;
+}
