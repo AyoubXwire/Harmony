@@ -1,16 +1,14 @@
 import './styles/main.css'
-import Trombinoscope from './pages/Trombinoscope'
+import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import Login from './pages/Login'
 
 function App() {
 	return (
-		<div className='app'>
-			<Navbar />
-
-			<div className="container py-5">
-				<Trombinoscope />
-			</div>
-		</div>
+		<Routes>
+			<Route path="/" element={<Navbar />} />
+			<Route path="/login" element={<Login />} />
+    	</Routes>
 	)
 }
 
