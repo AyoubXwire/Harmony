@@ -1,21 +1,18 @@
 import { useState, useEffect } from 'react'
 import * as userApi from '../api/users'
+import { useCookies } from 'react-cookie'
 
 function Trombinoscope() {
 
     const [users, setUsers] = useState([])
+    const [cookies, setCookie] = useCookies(['token'])
 
     useEffect(() => {
-        getUsers()
+        userApi.getUsers(cookies.token).then(users => setUsers(users))
     }, [])
 
-    async function getUsers() {
-        const users = await userApi.getUsers()
-        setUsers(users)
-    }
-
     function _usersList() {
-        if (users && users.length > 0) {
+        if (users?.length > 0) {
             return users.map(user => (
                 <div key={user.id} className="col-lg-6">
                     <div className='user-card m-2'>

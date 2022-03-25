@@ -1,5 +1,5 @@
 import './styles/main.css'
-import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Login from './pages/Login'
 import { UserContext } from './context/user'
@@ -14,18 +14,28 @@ import Timesheet from './pages/Timesheet'
 function App() {
 
 	const navigate = useNavigate()
+	const { pathname } = useLocation()
 	const [cookies] = useCookies(['token'])
 	const [user, setUser] = useState('username')
 
-	// check if user is authenticated
-	// if not, redirect to login page
 	useEffect(() => {
+		checkAuth()
+	}, [cookies?.token])
+
+	// check if user is authenticated
+	async function checkAuth() {
 		if (cookies.token) {
-			userApi.getUserByToken(cookies.token).then(user => setUser(user)).then(() => navigate('/'))
+			const user = await userApi.getUserByToken(cookies.token)
+			setUser(user)
+
+			// redirect to app after login
+			if (pathname === '/login') {
+				navigate('/trombinoscope')
+			}
 		} else {
 			navigate('/login')
 		}
-	}, [cookies?.token])
+	}
 
 	return (
 		<UserContext.Provider value={{user, setUser}}>
@@ -38,6 +48,7 @@ function App() {
 					<Route path="/projects" element={<Projects />} />
 					<Route path="/clients" element={<Clients />} />
 					<Route path="/timesheet" element={<Timesheet />} />
+					<Route path="*" element={<h1 className='text-center'>404</h1>} />
 				</Routes>
 			</div>
 		</UserContext.Provider>

@@ -8,8 +8,6 @@ async function verifyAuth(req, res, next) {
 	if (token == null) return res.sendStatus(401)
 
 	jwt.verify(token, process.env.SECRET, async (error, email) => {
-		console.log(error)
-
 		if (error) return res.sendStatus(403)
 
 		let user = await prisma.user.findUnique({

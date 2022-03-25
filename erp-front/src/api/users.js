@@ -1,8 +1,12 @@
 import axios from 'axios'
 import * as urls from './index'
 
-export async function getUsers() {
-    const users = await axios.get(urls.GET_ALL_USERS)
+export async function getUsers(token) {
+    const users = await axios.get(urls.GET_ALL_USERS, {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    })
     return users.data
 }
 

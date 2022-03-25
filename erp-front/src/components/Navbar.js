@@ -16,11 +16,9 @@ function Navbar() {
         removeCookie('token')
     }
 
-    return (
-        <div className="navigation">
-            <div className="container">
-                <h2>Harmony</h2>
-
+    function _links() {
+        if (user?.id) {
+            return (
                 <ul>
                     <li><Link to='/trombinoscope'>Trombinoscope</Link></li>
                     <li><Link to='/projects'>Projects</Link></li>
@@ -28,6 +26,22 @@ function Navbar() {
                     <li><Link to='/timesheet'>Timesheet</Link></li>
                     <li><a href="#" onClick={logout}>Logout</a></li>
                 </ul>
+            )
+        } else {
+            return (
+                <ul>
+                    <li><Link to='/login'>Login</Link></li>
+                </ul>
+            )
+        }
+    }
+
+    return (
+        <div className="navigation">
+            <div className="container">
+                <h2>Harmony</h2>
+
+                {_links()}
             </div>
         </div>
     )

@@ -16,5 +16,7 @@ app.use(cookieParser())
 app.use('/api/', require('./routes/index'))
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/users', require('./routes/users'))
+app.use('/api/projects', require('./routes/projects'))
+app.use('/api/clients', require('./routes/clients'))
 
 module.exports = app
