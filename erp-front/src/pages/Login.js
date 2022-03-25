@@ -1,6 +1,6 @@
-import axios from 'axios'
 import { useState } from 'react'
 import { useCookies } from 'react-cookie'
+import * as userApi from '../api/users'
 
 function Login() {
 
@@ -9,18 +9,12 @@ function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    // post credentials to server and store token in a cookie
     async function login(event) {
         event.preventDefault()
 
-        const response = await axios.post('http://localhost:4000/api/auth/login', {
-            email: email,
-            password: password
-        })
-
-        const accessToken = response.data.accessToken
-        setCookie('token', accessToken, {
-            httpOnly: true
-        })
+        const accessToken = await userApi.getUserToken(email, password)
+        setCookie('token', accessToken)
     }
 
     return (

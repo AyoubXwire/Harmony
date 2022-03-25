@@ -60,6 +60,10 @@ router.post('/register', async function (req, res) {
 	res.json({ accessToken: accessToken })
 })
 
+router.get('/userbytoken', verifyAuth, async function (req, res) {
+	res.json({ user: req.user })
+})
+
 router.get('/secret', verifyAuth, function (req, res) {
 	res.json({ user: req.user })
 })

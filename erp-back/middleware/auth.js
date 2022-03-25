@@ -12,12 +12,15 @@ async function verifyAuth(req, res, next) {
 
 		if (error) return res.sendStatus(403)
 
-		req.user = await prisma.user.findUnique({
+		let user = await prisma.user.findUnique({
 			where: {
 				email: email
 			},
 			include: { post: true }
 		})
+
+		delete user.password
+		req.user = user
 
 		next()
 	})
