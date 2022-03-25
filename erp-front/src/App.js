@@ -10,6 +10,7 @@ import Trombinoscope from './pages/Trombinoscope'
 import Clients from './pages/Clients'
 import Projects from './pages/Projects'
 import Timesheet from './pages/Timesheet'
+import History from './pages/History'
 
 function App() {
 
@@ -48,6 +49,7 @@ function App() {
 					<Route path="/projects" element={<Projects />} />
 					<Route path="/clients" element={<Clients />} />
 					<Route path="/timesheet" element={<Timesheet />} />
+					<Route path="/history" element={<History />} />
 					<Route path="*" element={<h1 className='text-center'>404</h1>} />
 				</Routes>
 			</div>

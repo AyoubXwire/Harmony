@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 .navigation {
@@ -36,4 +37,18 @@ body {
     padding: 10px;
     display: flex;
     align-items: flex-start;
+}
+
+.timesheet {
+    .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card {
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 0 10px 2px #eeeeee;
+    }
 }
