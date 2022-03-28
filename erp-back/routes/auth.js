@@ -31,7 +31,6 @@ router.post('/register', async function (req, res) {
 	const firstName = req.body.firstName
 	const lastName = req.body.lastName
 	const phone = req.body.phone
-	const avatar = req.body.avatar
 
 	const user = await prisma.user.findUnique({
 		where: {
@@ -49,7 +48,6 @@ router.post('/register', async function (req, res) {
 			lastName: lastName,
 			email: email,
 			phone: phone,
-			avatar: avatar,
 			password: hashedPassword,
 			postId: 1
 		}

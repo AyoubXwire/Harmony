@@ -13,7 +13,6 @@ model User {
   lastName   String
   email      String          @unique
   phone      String          @unique
-  avatar     String
   password   String
   postId     Int             @default(1)
   roleId     Int             @default(1)

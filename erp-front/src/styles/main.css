@@ -69,7 +69,33 @@ body {
 .timesheet .card {
   border-radius: 5px;
   padding: 20px;
-  -webkit-box-shadow: 0 0 10px 2px #eeeeee;
-          box-shadow: 0 0 10px 2px #eeeeee;
+  -webkit-box-shadow: 0 0 10px 2px #DDD;
+          box-shadow: 0 0 10px 2px #DDD;
+}
+
+.form-border {
+  background-color: #FAFAFA;
+  border: 1px solid #DDD;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+.form-border .actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.table .actions {
+  text-align: right;
+}
+
+.table .actions a {
+  color: cornflowerblue;
+  text-decoration: none;
+  margin-left: 20px;
 }
 /*# sourceMappingURL=main.css.map */

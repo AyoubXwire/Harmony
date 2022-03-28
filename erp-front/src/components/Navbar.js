@@ -20,10 +20,9 @@ function Navbar() {
         if (user?.id) {
             return (
                 <ul>
+                    { user?.role?.name === 'ADMIN' ? <li><Link to='/admin'>Admin</Link></li> : null }
                     <li><Link to='/trombinoscope'>Trombinoscope</Link></li>
-                    <li><Link to='/projects'>Projects</Link></li>
-                    <li><Link to='/clients'>Clients</Link></li>
-                    <li><Link to='/timesheet'>Timesheet</Link></li>
+                    <li><Link to='/timesheet'>My Timesheet</Link></li>
                     <li><a href="#" onClick={logout}>Logout</a></li>
                 </ul>
             )

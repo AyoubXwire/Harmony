@@ -12,13 +12,12 @@ function Register() {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [phone, setPhone] = useState('')
-    const [avatar, setAvatar] = useState('')
 
     // post credentials to server and store token in a cookie
     async function register(event) {
         event.preventDefault()
 
-        await userApi.registerUser(email, password, password2, firstName, lastName, phone, avatar)
+        await userApi.registerUser(email, password, password2, firstName, lastName, phone)
     }
 
     return (

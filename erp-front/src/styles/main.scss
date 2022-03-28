@@ -49,6 +49,28 @@ body {
     .card {
         border-radius: 5px;
         padding: 20px;
-        box-shadow: 0 0 10px 2px #eeeeee;
+        box-shadow: 0 0 10px 2px #DDD;
+    }
+}
+
+.form-border {
+    background-color: #FAFAFA;
+    border: 1px solid #DDD;
+    border-radius: 5px;
+    padding: 30px;
+
+    .actions {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.table .actions {
+    text-align: right;
+
+    a {
+        color: cornflowerblue;
+        text-decoration: none;
+        margin-left: 20px;
     }
 }
