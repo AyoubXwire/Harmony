@@ -28,3 +28,17 @@ export async function getUserToken(email, password) {
 
     return response.data.accessToken
 }
+
+export async function registerUser(email, password, password2, firstName, lastName, phone, avatar) {
+    const response = await axios.post(urls.REGISTER_USER, {
+        email,
+        password,
+        password2,
+        firstName,
+        lastName,
+        phone,
+        avatar
+    })
+
+    return response.data.accessToken
+}

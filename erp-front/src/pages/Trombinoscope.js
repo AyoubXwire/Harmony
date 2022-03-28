@@ -16,7 +16,7 @@ function Trombinoscope() {
             return users.map(user => (
                 <div key={user.id} className="col-lg-6">
                     <div className='user-card m-2'>
-                        <img src={user.avatar} alt={user.firstName + ' ' + user.lastName} />
+                        <img src={'https://ui-avatars.com/api/?name=' + user.firstName + '+' + user.lastName} alt={user.firstName + ' ' + user.lastName} />
                         <div className='ps-2'>
                             <h4>{user.firstName + ' ' + user.lastName}</h4>
                             <p>{user.post.name}</p>

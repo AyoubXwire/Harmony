@@ -9,8 +9,16 @@ router.get('/', function (req, res) {
 // Create test data
 router.get('/data', async function (req, res, next) {
 	try {
+		await prisma.userRole.createMany({
+			data: [
+				{ name: "USER" },
+				{ name: "ADMIN" },
+			]
+		})
+
 		await prisma.userPost.createMany({
 			data: [
+				{ name: "unassigned" },
 				{ name: "frontend" },
 				{ name: "backend" },
 				{ name: "sysadmin" },
@@ -19,10 +27,10 @@ router.get('/data', async function (req, res, next) {
 
 		await prisma.user.createMany({
 			data: [
-				{ firstName: "ayoub", lastName: "benabid", email: "ayoub@gmail.com", phone: "0629258232", avatar: "", password: "abcd", postId: 1 },
-				{ firstName: "nassim", lastName: "seffar", email: "nassim@gmail.com", phone: "0654369912", avatar: "", password: "abcd", postId: 1 },
-				{ firstName: "mohamed", lastName: "tbarka", email: "mohamed@gmail.com", phone: "0612654876", avatar: "", password: "abcd", postId: 2 },
-				{ firstName: "ismail", lastName: "idboulkacem", email: "ismail@gmail.com", phone: "0676339089", avatar: "", password: "abcd", postId: 3 },
+				{ firstName: "ayoub", lastName: "benabid", email: "ayoub@gmail.com", phone: "0629258232", avatar: "", password: "$2a$10$29BTvhVFlYuvZmwyPETJ4uIFy5WFwB00RC8LTrHwhJmSwcUbYnRJm" },
+				{ firstName: "nassim", lastName: "seffar", email: "nassim@gmail.com", phone: "0654369912", avatar: "", password: "$2a$10$29BTvhVFlYuvZmwyPETJ4uIFy5WFwB00RC8LTrHwhJmSwcUbYnRJm" },
+				{ firstName: "mohamed", lastName: "tbarka", email: "mohamed@gmail.com", phone: "0612654876", avatar: "", password: "$2a$10$29BTvhVFlYuvZmwyPETJ4uIFy5WFwB00RC8LTrHwhJmSwcUbYnRJm" },
+				{ firstName: "ismail", lastName: "idboulkacem", email: "ismail@gmail.com", phone: "0676339089", avatar: "", password: "$2a$10$29BTvhVFlYuvZmwyPETJ4uIFy5WFwB00RC8LTrHwhJmSwcUbYnRJm" },
 			]
 		})
 

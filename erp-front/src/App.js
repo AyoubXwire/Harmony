@@ -11,6 +11,7 @@ import Clients from './pages/Clients'
 import Projects from './pages/Projects'
 import Timesheet from './pages/Timesheet'
 import History from './pages/History'
+import Register from './pages/Register'
 
 function App() {
 
@@ -34,7 +35,7 @@ function App() {
 				navigate('/trombinoscope')
 			}
 		} else {
-			navigate('/login')
+			// navigate('/login')
 		}
 	}
 
@@ -45,6 +46,7 @@ function App() {
 			<div className="container py-5">
 				<Routes>
 					<Route path="/login" element={<Login />} />
+					<Route path="/register" element={<Register />} />
 					<Route path="/trombinoscope" element={<Trombinoscope />} />
 					<Route path="/projects" element={<Projects />} />
 					<Route path="/clients" element={<Clients />} />

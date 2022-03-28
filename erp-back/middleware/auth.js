@@ -1,6 +1,11 @@
 const jwt = require('jsonwebtoken')
 const prisma = require('../db')
 
+const AUTH_ROLES = {
+	admin: 'ADMIN',
+	user: 'USER'
+}
+
 async function verifyAuth(req, res, next) {
 	const authHeader = req.headers['authorization']
 	const token = authHeader && authHeader.split(' ')[1]
@@ -14,7 +19,10 @@ async function verifyAuth(req, res, next) {
 			where: {
 				email: email
 			},
-			include: { post: true }
+			include: {
+				post: true,
+				role: true
+			}
 		})
 
 		delete user.password
@@ -24,6 +32,15 @@ async function verifyAuth(req, res, next) {
 	})
 }
 
+function verifyRole(role) {
+	return (req, res, next) => {
+		if (req.user.role.name !== role) return res.sendStatus(403)
+		next()
+	}
+}
+
 module.exports = {
-    verifyAuth
+    AUTH_ROLES,
+	verifyAuth,
+	verifyRole
 }
