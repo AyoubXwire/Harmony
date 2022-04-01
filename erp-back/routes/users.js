@@ -6,7 +6,10 @@ const { verifyAuth } = require('../middleware/auth')
 router.get('/', verifyAuth, async function (req, res, next) {
 	try {
 		const users = await prisma.user.findMany({
-			include: { post: true }
+			include: {
+				post: true,
+				role: true
+			}
 		})
 
 		res.json(users)

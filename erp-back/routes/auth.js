@@ -53,16 +53,10 @@ router.post('/register', async function (req, res) {
 		}
 	})
 
-	const accessToken = jwt.sign(email, process.env.SECRET)
-
-	res.json({ accessToken: accessToken })
+	res.status(200).send()
 })
 
 router.get('/userbytoken', verifyAuth, async function (req, res) {
-	res.json({ user: req.user })
-})
-
-router.get('/secret', verifyAuth, function (req, res) {
 	res.json({ user: req.user })
 })
 
