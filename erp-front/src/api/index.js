@@ -20,6 +20,9 @@ export const GET_ALL_USER_PROJECTS = API_BASE + '/projects/?assigned=true'
 
 // clients
 export const GET_ALL_CLIENTS = API_BASE + '/clients/'
+export const CREATE_CLIENT = API_BASE + '/clients/'
+export const DELETE_CLIENT = API_BASE + '/clients/'
+export const UPDATE_CLIENT = API_BASE + '/clients/'
 
 // timesheet
 export const GET_ALL_TIMESHEETS = API_BASE + '/timesheet/'

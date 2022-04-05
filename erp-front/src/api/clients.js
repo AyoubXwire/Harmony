@@ -9,3 +9,31 @@ export async function getClients(token) {
     })
     return clients.data
 }
+
+export async function createClient(token, client) {
+    await axios.post(urls.CREATE_CLIENT, {
+        name: client.name
+    }, {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    })
+}
+
+export async function deleteClient(token, clientId) {
+    await axios.delete(urls.DELETE_CLIENT + clientId, {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    })
+}
+
+export async function updateClient(token, clientId, client) {
+    await axios.put(urls.UPDATE_CLIENT + clientId, {
+        name: client.name
+    }, {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    })
+}
