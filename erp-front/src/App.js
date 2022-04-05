@@ -14,7 +14,7 @@ import Admin from './pages/admin/Admin'
 import AdminPosts from './pages/admin/AdminPosts'
 import AdminUsers from './pages/admin/AdminUsers'
 import AdminClients from './pages/admin/AdminClients'
-import AdminClientContacts from './pages/admin/AdminClientContacts'
+import AdminContacts from './pages/admin/AdminContacts'
 import AdminProjects from './pages/admin/AdminProjects'
 import AdminTimesheets from './pages/admin/AdminTimesheets'
 
@@ -63,7 +63,7 @@ function App() {
 							<Route path="/admin/posts" element={<AdminPosts />} />
 							<Route path="/admin/users" element={<AdminUsers />} />
 							<Route path="/admin/clients" element={<AdminClients />} />
-							<Route path="/admin/contacts" element={<AdminClientContacts />} />
+							<Route path="/admin/contacts" element={<AdminContacts />} />
 							<Route path="/admin/projects" element={<AdminProjects />} />
 							<Route path="/admin/timesheets" element={<AdminTimesheets />} />
 						</Route>

@@ -5,13 +5,13 @@ const { verifyAuth, verifyRole, AUTH_ROLES } = require('../middleware/auth')
 
 router.get('/', verifyAuth, async function (req, res, next) {
 	try {
-		const clients = await prisma.client.findMany({
+		const contacts = await prisma.clientContact.findMany({
 			include: {
-				_count: true
+				client: true
 			}
 		})
 
-		res.json(clients)
+		res.json(contacts)
 	} catch (error) {
 		next(error)
 	}
@@ -19,9 +19,12 @@ router.get('/', verifyAuth, async function (req, res, next) {
 
 router.post('/', verifyAuth, verifyRole(AUTH_ROLES.admin), async function (req, res, next) {
 	try {
-		await prisma.client.create({
+		await prisma.clientContact.create({
 			data: {
-				name: req.body.name
+				firstName: req.body.firstName,
+				lastName: req.body.lastName,
+				email: req.body.email,
+				phone: req.body.phone,
 			}
 		})
 
@@ -33,11 +36,11 @@ router.post('/', verifyAuth, verifyRole(AUTH_ROLES.admin), async function (req, 
 
 router.delete('/:id', verifyAuth, verifyRole(AUTH_ROLES.admin), async function (req, res, next) {
 	try {
-		const clientId = Number(req.params.id)
+		const contactId = Number(req.params.id)
 
-		await prisma.client.delete({
+		await prisma.clientContact.delete({
 			where: {
-				id: clientId
+				id: contactId
 			}
 		})
 
@@ -49,14 +52,17 @@ router.delete('/:id', verifyAuth, verifyRole(AUTH_ROLES.admin), async function (
 
 router.put('/:id', verifyAuth, verifyRole(AUTH_ROLES.admin), async function (req, res, next) {
 	try {
-		const clientId = Number(req.params.id)
+		const contactId = Number(req.params.id)
 
-		await prisma.client.update({
+		await prisma.clientContact.update({
 			where: {
-				id: clientId
+				id: contactId
 			},
 			data: {
-				name: req.body.name
+				firstName: req.body.firstName,
+				lastName: req.body.lastName,
+				email: req.body.email,
+				phone: req.body.phone,
 			}
 		})
 

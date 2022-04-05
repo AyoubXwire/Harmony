@@ -24,6 +24,12 @@ export const CREATE_CLIENT = API_BASE + '/clients/'
 export const DELETE_CLIENT = API_BASE + '/clients/'
 export const UPDATE_CLIENT = API_BASE + '/clients/'
 
+// contacts
+export const GET_ALL_CONTACTS = API_BASE + '/contacts/'
+export const CREATE_CONTACT = API_BASE + '/contacts/'
+export const DELETE_CONTACT = API_BASE + '/contacts/'
+export const UPDATE_CONTACT = API_BASE + '/contacts/'
+
 // timesheet
 export const GET_ALL_TIMESHEETS = API_BASE + '/timesheet/'
 export const GET_ALL_USER_TIMESHEETS = API_BASE + '/timesheet/?assigned=true'
