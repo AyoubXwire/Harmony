@@ -17,6 +17,9 @@ export const GET_ALL_USERS = API_BASE + '/users/'
 // projects
 export const GET_ALL_PROJECTS = API_BASE + '/projects/'
 export const GET_ALL_USER_PROJECTS = API_BASE + '/projects/?assigned=true'
+export const CREATE_PROJECT = API_BASE + '/projects/'
+export const DELETE_PROJECT = API_BASE + '/projects/'
+export const UPDATE_PROJECT = API_BASE + '/projects/'
 
 // clients
 export const GET_ALL_CLIENTS = API_BASE + '/clients/'

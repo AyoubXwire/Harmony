@@ -1,16 +1,26 @@
+@import 'base';
+
 body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 .navigation {
-    background-color: #90dbdb;
+    background-color: $color-primary;
+    display: flex;
+    height: 60px;
     
     .container {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        color: $color-light;
+
+        h2 {
+            margin: 0;
+        }
 
         ul {
             list-style: none;
@@ -24,7 +34,7 @@ body {
 
                 a {
                     text-decoration: none;
-                    color: black;
+                    color: $color-light;
                 }
             }
         }
@@ -32,7 +42,7 @@ body {
 }
 
 .user-card {
-    border: 1px solid #DDDDDD;
+    border: 1px solid $color-grey;
     border-radius: 5px;
     padding: 10px;
     display: flex;
@@ -49,13 +59,12 @@ body {
     .card {
         border-radius: 5px;
         padding: 20px;
-        box-shadow: 0 0 10px 2px #DDD;
+        box-shadow: 0 0 10px 2px $color-grey;
     }
 }
 
 .form-border {
-    background-color: #FAFAFA;
-    border: 1px solid #DDD;
+    border: 1px solid $color-grey;
     border-radius: 5px;
     padding: 30px;
 
@@ -69,8 +78,26 @@ body {
     text-align: right;
 
     a {
-        color: cornflowerblue;
-        text-decoration: none;
         margin-left: 20px;
+    }
+}
+
+.admin-dashboard {
+    a {
+        text-decoration: none;
+        color: $color-dark;
+
+        .tab {
+            border: 1px solid $color-grey;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            
+            img {
+                padding: 20px 0;
+            }
+        }
     }
 }

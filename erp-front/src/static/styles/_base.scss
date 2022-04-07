@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap');
+
+$color-dark: #000000;
+$color-light: #FFFFFF;
+$color-grey: #DDDDDD;
+$color-primary: #A434AE;
+$color-secondary: #58A4B0;
+
+a {
+    text-decoration: none;
+    color: $color-primary;
+    font-weight: 600;
+
+    &:hover {
+        color: $color-primary;
+        text-decoration: underline;
+    }
+}
+
+.button {
+    border: 1px solid $color-grey;
+    padding: 6px 20px;
+    border-radius: 5px;
+    transition: all 0.2s;
+    display: inline-block;
+    cursor: pointer;
+
+    &.primary {
+        background-color: $color-primary;
+        color: $color-light;
+
+        &:hover {
+            transform: scale(.9)
+        }
+    }
+
+    &.secondary {
+        background-color: $color-secondary;
+        color: $color-light;
+
+        &:hover {
+            transform: scale(.9);
+        }
+    }
+}
+
+.hover-shadow {
+    transition: box-shadow 0.3s;
+
+    &:hover {
+        box-shadow: 0 0 10px 2px $color-grey;
+    }
+}

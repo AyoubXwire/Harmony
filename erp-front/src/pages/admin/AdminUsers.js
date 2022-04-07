@@ -13,6 +13,7 @@ function AdminUsers() {
         email: '',
         phone: '',
         password: '',
+        password2: '',
     })
 
     useEffect(() => {
@@ -27,6 +28,7 @@ function AdminUsers() {
             email: '',
             phone: '',
             password: '',
+            password2: '',
         })
 
         await getUsers()
@@ -74,7 +76,7 @@ function AdminUsers() {
                     <td>{_user.role.name}</td>
                     <td className="actions">
                         <a href="#" onClick={() => setUser(_user)}>Update</a>
-                        {/* <a href="#" onClick={() => deleteUser(_user.id)}>Delete</a> */}
+                        <a href="#" onClick={() => deleteUser(_user.id)}>Delete</a>
                     </td>
                 </tr>
             ))
@@ -96,8 +98,8 @@ function AdminUsers() {
                     <input className='form-control my-2' value={user.password2} onChange={event => setUser({ ...user, password2: event.target.value })} type='password' name='password2' placeholder='confirm password' />
 
                     <div className="actions">
-                        <input className='btn btn-danger my-2' type='reset' value='Reset' onClick={reset} />
-                        <input className='btn btn-info my-2 ms-2' type='submit' value='Save' />
+                        <input className='button secondary mt-3' type='reset' value='Reset' onClick={reset} />
+                        <input className='button primary mt-3 ms-2' type='submit' value='Save' />
                     </div>
                 </form>
             </div>

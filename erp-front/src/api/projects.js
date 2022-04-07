@@ -18,3 +18,31 @@ export async function getUserProjects(token) {
     })
     return projects.data
 }
+
+export async function createProject(token, project) {
+    await axios.post(urls.CREATE_PROJECT, {
+        name: project.name
+    }, {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    })
+}
+
+export async function deleteProject(token, projectId) {
+    await axios.delete(urls.DELETE_PROJECT + projectId, {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    })
+}
+
+export async function updateProject(token, projectId, project) {
+    await axios.put(urls.UPDATE_PROJECT + projectId, {
+        name: project.name
+    }, {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    })
+}

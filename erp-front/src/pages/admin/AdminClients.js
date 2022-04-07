@@ -81,8 +81,8 @@ function AdminClients() {
                     <input className='form-control my-2' value={client.name} onChange={event => setClient({ ...client, name: event.target.value })} type='text' name='name' placeholder='client name' />
 
                     <div className="actions">
-                        <input className='btn btn-danger my-2' type='reset' value='Reset' onClick={reset} />
-                        <input className='btn btn-info my-2 ms-2' type='submit' value='Save' />
+                        <input className='button secondary mt-3' type='reset' value='Reset' onClick={reset} />
+                        <input className='button primary mt-3 ms-2' type='submit' value='Save' />
                     </div>
                 </form>
             </div>

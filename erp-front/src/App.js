@@ -1,4 +1,4 @@
-import './styles/main.css'
+import './static/styles/main.css'
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Login from './pages/Login'
