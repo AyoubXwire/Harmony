@@ -40,6 +40,12 @@ a:hover {
           transform: scale(0.9);
 }
 
+.bordered {
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
+  padding: 10px;
+}
+
 .hover-shadow {
   -webkit-transition: -webkit-box-shadow 0.3s;
   transition: -webkit-box-shadow 0.3s;
@@ -58,6 +64,11 @@ body {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: 'Josefin Sans', sans-serif;
+}
+
+.login {
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .navigation {

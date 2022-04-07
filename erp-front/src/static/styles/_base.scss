@@ -44,6 +44,12 @@ a {
     }
 }
 
+.bordered {
+    border: 1px solid $color-grey;
+    border-radius: 5px;
+    padding: 10px;
+}
+
 .hover-shadow {
     transition: box-shadow 0.3s;
 

@@ -18,13 +18,13 @@ function Login() {
     }
 
     return (
-        <div className=''>
-            <h1 className='text-center mb-4'>Login</h1>
+        <div className='login text-center px-4 py-5 bordered'>
+            <h1 className='mb-4'>Login</h1>
 
             <form onSubmit={login}>
                 <input className='form-control my-2' value={email} onChange={event => setEmail(event.target.value)} type='text' name='email' placeholder='email' />
                 <input className='form-control my-2' value={password} onChange={event => setPassword(event.target.value)} type='password' name='password' placeholder='password' />
-                <input className='btn btn-info my-2' type='submit' value='Login' />
+                <input className='button primary mt-4' type='submit' value='Login' />
             </form>
         </div>
     )
