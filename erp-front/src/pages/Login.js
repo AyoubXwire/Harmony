@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useCookies } from 'react-cookie'
-import * as userApi from '../api/users'
+import * as authApi from '../api/auth'
 
 function Login() {
 
@@ -13,7 +13,7 @@ function Login() {
     async function login(event) {
         event.preventDefault()
 
-        const accessToken = await userApi.getUserToken(email, password)
+        const accessToken = await authApi.getUserToken(email, password)
         setCookie('token', accessToken)
     }
 

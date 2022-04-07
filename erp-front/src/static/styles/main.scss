@@ -14,6 +14,7 @@ body {
 
 .navigation {
     background-color: $color-primary;
+    box-shadow: 0 5px 10px 2px $color-grey;
     display: flex;
     height: 60px;
     
@@ -45,13 +46,21 @@ body {
         }
     }
 }
+.trombinoscope {
+    .user-card {
+        display: flex;
+        align-items: flex-start;
 
-.user-card {
-    border: 1px solid $color-grey;
-    border-radius: 5px;
-    padding: 10px;
-    display: flex;
-    align-items: flex-start;
+        .avatar {
+            border-radius: 5px;
+        }
+
+        .content {
+            margin-left: 10px;
+            padding-left: 10px;
+            border-left: 1px solid $color-grey;
+        }
+    }
 }
 
 .timesheet {

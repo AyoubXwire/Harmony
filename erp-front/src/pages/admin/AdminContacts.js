@@ -85,10 +85,24 @@ function AdminContacts() {
             <div className="form-border my-5">
                 <form onSubmit={saveContact}>
                     <input className='form-control my-2' value={contact.id} onChange={event => setContact({ ...contact, id: event.target.value })} type='text' name='id' placeholder='contact id' disabled />
-                    <input className='form-control my-2' value={contact.firstName} onChange={event => setContact({ ...contact, firstName: event.target.value })} type='text' name='firstName' placeholder='first name' />
-                    <input className='form-control my-2' value={contact.lastName} onChange={event => setContact({ ...contact, lastName: event.target.value })} type='text' name='lastName' placeholder='last name' />
-                    <input className='form-control my-2' value={contact.email} onChange={event => setContact({ ...contact, email: event.target.value })} type='email' name='email' placeholder='email' />
-                    <input className='form-control my-2' value={contact.phone} onChange={event => setContact({ ...contact, phone: event.target.value })} type='text' name='phone' placeholder='phone number' />
+                    
+                    <div className='row'>
+                        <div className='col-md-6'>
+                            <input className='form-control my-2' value={contact.firstName} onChange={event => setContact({ ...contact, firstName: event.target.value })} type='text' name='firstName' placeholder='first name' />
+                        </div>
+                        <div className='col-md-6'>
+                            <input className='form-control my-2' value={contact.lastName} onChange={event => setContact({ ...contact, lastName: event.target.value })} type='text' name='lastName' placeholder='last name' />
+                        </div>
+                    </div>
+
+                    <div className='row'>
+                        <div className='col-md-6'>
+                            <input className='form-control my-2' value={contact.email} onChange={event => setContact({ ...contact, email: event.target.value })} type='email' name='email' placeholder='email' />
+                        </div>
+                        <div className='col-md-6'>
+                            <input className='form-control my-2' value={contact.phone} onChange={event => setContact({ ...contact, phone: event.target.value })} type='text' name='phone' placeholder='phone number' />
+                        </div>
+                    </div>
 
                     <div className="actions">
                         <input className='button secondary mt-3' type='reset' value='Reset' onClick={reset} />

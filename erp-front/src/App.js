@@ -5,11 +5,10 @@ import Login from './pages/Login'
 import { UserContext } from './context/user'
 import { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
-import * as userApi from './api/users'
+import * as authApi from './api/auth'
 import Trombinoscope from './pages/Trombinoscope'
 import Timesheet from './pages/Timesheet'
 import History from './pages/History'
-import Register from './pages/Register'
 import Admin from './pages/admin/Admin'
 import AdminPosts from './pages/admin/AdminPosts'
 import AdminUsers from './pages/admin/AdminUsers'
@@ -32,7 +31,7 @@ function App() {
 	// check if user is authenticated
 	async function checkAuth() {
 		if (cookies.token) {
-			const user = await userApi.getUserByToken(cookies.token)
+			const user = await authApi.getUserByToken(cookies.token)
 			setUser(user)
 
 			// redirect to app after login
@@ -51,7 +50,6 @@ function App() {
 			<div className="container py-5">
 				<Routes>
 					<Route path="/login" element={<Login />} />
-					<Route path="/register" element={<Register />} />
 					<Route path="/trombinoscope" element={<Trombinoscope />} />
 					<Route path="/timesheet" element={<Timesheet />} />
 					<Route path="/history" element={<History />} />

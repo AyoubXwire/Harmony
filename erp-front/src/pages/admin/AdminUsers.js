@@ -50,17 +50,17 @@ function AdminUsers() {
     }
 
     async function createUser() {
-        await userApi.registerUser(cookies.token, user)
+        await userApi.createUser(cookies.token, user)
         await reset()
     }
 
     async function deleteUser(userId) {
-        // await userApi.deleteUser(cookies.token, userId)
+        await userApi.deleteUser(cookies.token, userId)
         await reset()
     }
 
     async function updateUser(userId) {
-        // await userApi.updateUser(cookies.token, userId, user)
+        await userApi.updateUser(cookies.token, userId, user)
         await reset()
     }
 
@@ -75,7 +75,7 @@ function AdminUsers() {
                     <td>{_user.post.name}</td>
                     <td>{_user.role.name}</td>
                     <td className="actions">
-                        <a href="#" onClick={() => setUser(_user)}>Update</a>
+                        <a href="#" onClick={() => { delete(_user.password); setUser(_user) }}>Update</a>
                         <a href="#" onClick={() => deleteUser(_user.id)}>Delete</a>
                     </td>
                 </tr>
@@ -88,14 +88,35 @@ function AdminUsers() {
             <h1 className="text-center">Manage users</h1>
 
             <div className="form-border my-5">
-                <form>
+                <form onSubmit={saveUser}>
                     <input className='form-control my-2' value={user.id} onChange={event => setUser({ ...user, id: event.target.value })} type='text' name='id' placeholder='user id' disabled />
-                    <input className='form-control my-2' value={user.firstName} onChange={event => setUser({ ...user, firstName: event.target.value })} type='text' name='firstName' placeholder='first name' />
-                    <input className='form-control my-2' value={user.lastName} onChange={event => setUser({ ...user, lastName: event.target.value })} type='text' name='lastName' placeholder='last name' />
-                    <input className='form-control my-2' value={user.email} onChange={event => setUser({ ...user, email: event.target.value })} type='email' name='email' placeholder='email' />
-                    <input className='form-control my-2' value={user.phone} onChange={event => setUser({ ...user, phone: event.target.value })} type='text' name='phone' placeholder='phone number' />
-                    <input className='form-control my-2' value={user.password} onChange={event => setUser({ ...user, password: event.target.value })} type='password' name='password' placeholder='password' />
-                    <input className='form-control my-2' value={user.password2} onChange={event => setUser({ ...user, password2: event.target.value })} type='password' name='password2' placeholder='confirm password' />
+                    
+                    <div className='row'>
+                        <div className='col-md-6'>
+                            <input className='form-control my-2' value={user.firstName} onChange={event => setUser({ ...user, firstName: event.target.value })} type='text' name='firstName' placeholder='first name' />
+                        </div>
+                        <div className='col-md-6'>
+                            <input className='form-control my-2' value={user.lastName} onChange={event => setUser({ ...user, lastName: event.target.value })} type='text' name='lastName' placeholder='last name' />
+                        </div>
+                    </div>
+
+                    <div className='row'>
+                        <div className='col-md-6'>
+                            <input className='form-control my-2' value={user.email} onChange={event => setUser({ ...user, email: event.target.value })} type='email' name='email' placeholder='email' />
+                        </div>
+                        <div className='col-md-6'>
+                            <input className='form-control my-2' value={user.phone} onChange={event => setUser({ ...user, phone: event.target.value })} type='text' name='phone' placeholder='phone number' />
+                        </div>
+                    </div>
+
+                    <div className='row'>
+                        <div className='col-md-6'>
+                            <input className='form-control my-2' value={user.password} onChange={event => setUser({ ...user, password: event.target.value })} type='password' name='password' placeholder='password' />
+                        </div>
+                        <div className='col-md-6'>
+                            <input className='form-control my-2' value={user.password2} onChange={event => setUser({ ...user, password2: event.target.value })} type='password' name='password2' placeholder='confirm password' />
+                        </div>
+                    </div>
 
                     <div className="actions">
                         <input className='button secondary mt-3' type='reset' value='Reset' onClick={reset} />

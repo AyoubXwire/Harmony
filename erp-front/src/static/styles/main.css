@@ -73,6 +73,8 @@ body {
 
 .navigation {
   background-color: #A434AE;
+  -webkit-box-shadow: 0 5px 10px 2px #DDDDDD;
+          box-shadow: 0 5px 10px 2px #DDDDDD;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -117,16 +119,23 @@ body {
   color: #FFFFFF;
 }
 
-.user-card {
-  border: 1px solid #DDDDDD;
-  border-radius: 5px;
-  padding: 10px;
+.trombinoscope .user-card {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+}
+
+.trombinoscope .user-card .avatar {
+  border-radius: 5px;
+}
+
+.trombinoscope .user-card .content {
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 1px solid #DDDDDD;
 }
 
 .timesheet .topbar {
