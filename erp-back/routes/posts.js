@@ -19,8 +19,6 @@ router.get('/', verifyAuth, async function (req, res, next) {
 
 router.post('/', verifyAuth, verifyRole(AUTH_ROLES.admin), async function (req, res, next) {
 	try {
-		console.log(req.body)
-
 		await prisma.userPost.create({
 			data: {
 				name: req.body.name

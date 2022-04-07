@@ -4,106 +4,106 @@ import { useCookies } from 'react-cookie'
 
 function AdminProjects() {
 
-    // const [cookies] = useCookies(['token'])
-    // const [posts, setPosts] = useState([])
-    // const [post, setPost] = useState({
-    //     id: '',
-    //     name: ''
-    // })
+    const [cookies] = useCookies(['token'])
+    const [projects, setProjects] = useState([])
+    const [project, setProject] = useState({
+        id: '',
+        name: '',
+        price: '',
+        startDate: '',
+        endDate: ''
+    })
 
-    // useEffect(() => {
-    //     getPosts()
-    // }, [])
+    useEffect(() => {
+        getProjects()
+    }, [])
 
-    // async function reset() {
-    //     setPost({
-    //         id: '',
-    //         name: '' 
-    //     })
+    async function reset() {
+        setProject({
+            id: '',
+            name: '',
+            price: '',
+            startDate: '',
+            endDate: '' 
+        })
 
-    //     await getPosts()
-    // }
+        await getProjects()
+    }
 
-    // async function getPosts() {
-    //     const posts = await projectApi.getPosts(cookies.token)
-    //     setPosts(posts)
-    // }
+    async function getProjects() {
+        const projects = await projectApi.getProjects(cookies.token)
+        setProjects(projects)
+    }
 
-    // async function savePost(event) {
-    //     event.preventDefault()
+    async function saveProject(event) {
+        event.preventDefault()
 
-    //     if (post?.id) {
-    //         updatePost(post.id)
-    //     } else {
-    //         createPost()
-    //     }
-    // }
+        if (project?.id) {
+            updateProject(project.id)
+        } else {
+            createProject()
+        }
+    }
 
-    // async function createPost() {
-    //     await projectApi.createPost(cookies.token, post)
-    //     await reset()
-    // }
+    async function createProject() {
+        await projectApi.createProject(cookies.token, project)
+        await reset()
+    }
 
-    // async function deletePost(postId) {
-    //     await projectApi.deletePost(cookies.token, postId)
-    //     await reset()
-    // }
+    async function deleteProject(projectId) {
+        await projectApi.deleteProject(cookies.token, projectId)
+        await reset()
+    }
 
-    // async function updatePost(postId) {
-    //     await projectApi.updatePost(cookies.token, postId, post)
-    //     await reset()
-    // }
+    async function updateProject(projectId) {
+        await projectApi.updateProject(cookies.token, projectId, project)
+        await reset()
+    }
 
-    // function _table() {
-    //     if (posts?.length > 0) {
-    //         return posts.map(_post => (
-    //             <tr key={_post.id}>
-    //                 <th>{_post.id}</th>
-    //                 <td>{_post.name}</td>
-    //                 <td>{_post._count.users}</td>
-    //                 <td className="actions">
-    //                     <a href="#" onClick={() => setPost(_post)}>Update</a>
-    //                     <a href="#" onClick={() => deletePost(_post.id)}>Delete</a>
-    //                 </td>
-    //             </tr>
-    //         ))
-    //     }
-    // }
-
-    // return (
-    //     <div>
-    //         <h1 className="text-center">Manage posts</h1>
-
-    //         <div className="form-border my-5">
-    //             <form onSubmit={savePost}>
-    //                 <input className='form-control my-2' value={post.id} onChange={event => setPost({ ...post, id: event.target.value })} type='text' name='id' placeholder='post id' disabled />
-    //                 <input className='form-control my-2' value={post.name} onChange={event => setPost({ ...post, name: event.target.value })} type='text' name='name' placeholder='post name' />
-
-    //                 <div className="actions">
-    //                     <input className='btn btn-danger my-2' type='reset' value='Reset' onClick={reset} />
-    //                     <input className='btn btn-info my-2 ms-2' type='submit' value='Save' />
-    //                 </div>
-    //             </form>
-    //         </div>
-
-    //         <table className="table table-striped">
-    //             <thead>
-    //                 <tr>
-    //                     <th>#</th>
-    //                     <th>Post name</th>
-    //                     <th>Users</th>
-    //                     <th></th>
-    //                 </tr>
-    //             </thead>
-    //             <tbody>
-    //                 {_table()}
-    //             </tbody>
-    //         </table>
-    //     </div>
-    // )
+    function _table() {
+        if (projects?.length > 0) {
+            return projects.map(_project => (
+                <tr key={_project.id}>
+                    <th>{_project.id}</th>
+                    <td>{_project.name}</td>
+                    <td className="actions">
+                        <a href="#" onClick={() => setProject(_project)}>Update</a>
+                        <a href="#" onClick={() => deleteProject(_project.id)}>Delete</a>
+                    </td>
+                </tr>
+            ))
+        }
+    }
 
     return (
-        <p>projects</p>
+        <div>
+            <h1 className="text-center">Manage projects</h1>
+
+            <div className="form-border my-5">
+                <form onSubmit={saveProject}>
+                    <input className='form-control my-2' value={project.id} onChange={event => setProject({ ...project, id: event.target.value })} type='text' name='id' placeholder='project id' disabled />
+                    <input className='form-control my-2' value={project.name} onChange={event => setProject({ ...project, name: event.target.value })} type='text' name='name' placeholder='project name' />
+
+                    <div className="actions">
+                        <input className='button secondary mt-2' type='reset' value='Reset' onClick={reset} />
+                        <input className='button primary mt-2 ms-2' type='submit' value='Save' />
+                    </div>
+                </form>
+            </div>
+
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Project name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {_table()}
+                </tbody>
+            </table>
+        </div>
     )
 }
 
