@@ -1,8 +1,11 @@
 import axios from 'axios'
+import { objectToQuery } from '../helpers'
 import * as urls from './index'
 
-export async function getUsers(token) {
-    const users = await axios.get(urls.GET_ALL_USERS, {
+export async function getUsers(token, filters) {
+    const query = objectToQuery(filters)
+
+    const users = await axios.get(urls.GET_ALL_USERS + query, {
         headers: {
             Authorization: 'Bearer ' + token
         }
