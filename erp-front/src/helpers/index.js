@@ -1,6 +1,6 @@
 
 export function objectToQuery(queryObject) {
-    console.log(queryObject)
+
     let query = ''
     let i = 0
 
@@ -17,6 +17,6 @@ export function objectToQuery(queryObject) {
             i++
         }
     }
-    console.log(query)
+
     return query
 }

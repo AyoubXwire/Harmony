@@ -8,18 +8,19 @@ datasource db {
 }
 
 model User {
-  id         Int             @id @default(autoincrement())
-  firstName  String
-  lastName   String
-  email      String          @unique
-  phone      String          @unique
-  password   String
-  postId     Int             @default(1)
-  roleId     Int             @default(1)
-  post       UserPost        @relation(fields: [postId], references: [id])
-  role       UserRole        @relation(fields: [roleId], references: [id])
-  Projects   ProjectAssign[]
-  timesheets TimeSheet[]
+  id             Int             @id @default(autoincrement())
+  firstName      String
+  lastName       String
+  email          String          @unique
+  phone          String          @unique
+  password       String
+  updatePassword Boolean         @default(true)
+  postId         Int             @default(1)
+  roleId         Int             @default(1)
+  post           UserPost        @relation(fields: [postId], references: [id])
+  role           UserRole        @relation(fields: [roleId], references: [id])
+  Projects       ProjectAssign[]
+  timesheets     TimeSheet[]
 }
 
 model UserRole {
