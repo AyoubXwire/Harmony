@@ -43,6 +43,24 @@ function App() {
 		}
 	}
 
+	function _adminRoutes() {
+		if (user?.role?.name === 'ADMIN') {
+			return (
+				<Route path="/admin">
+					<Route path="/admin" element={<Admin />} />
+					<Route path="/admin/posts" element={<AdminPosts />} />
+					<Route path="/admin/users" element={<AdminUsers />} />
+					<Route path="/admin/clients" element={<AdminClients />} />
+					<Route path="/admin/contacts" element={<AdminContacts />} />
+					<Route path="/admin/projects" element={<AdminProjects />} />
+					<Route path="/admin/timesheets" element={<AdminTimesheets />} />
+				</Route>
+			)
+		} else {
+			return null
+		}
+	}
+
 	return (
 		<UserContext.Provider value={{user, setUser}}>
 			<Navbar />
@@ -54,20 +72,7 @@ function App() {
 					<Route path="/timesheet" element={<Timesheet />} />
 					<Route path="/history" element={<History />} />
 
-					{
-						user?.role?.name === 'ADMIN' ?
-						<Route path="/admin">
-							<Route path="/admin" element={<Admin />} />
-							<Route path="/admin/posts" element={<AdminPosts />} />
-							<Route path="/admin/users" element={<AdminUsers />} />
-							<Route path="/admin/clients" element={<AdminClients />} />
-							<Route path="/admin/contacts" element={<AdminContacts />} />
-							<Route path="/admin/projects" element={<AdminProjects />} />
-							<Route path="/admin/timesheets" element={<AdminTimesheets />} />
-						</Route>
-						:
-						null
-					}
+					{_adminRoutes()}
 
 					<Route path="*" element={<h1 className='text-center'>404</h1>} />
 				</Routes>
