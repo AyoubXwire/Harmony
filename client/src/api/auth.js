@@ -19,3 +19,15 @@ export async function getUserToken(email, password) {
 
     return response.data.accessToken
 }
+
+export async function updateUserPassword(token, passwords) {
+    await axios.put(urls.UPDATE_USER_PASSWORD, {
+        oldPassword: passwords.oldPassword,
+        password: passwords.password,
+        password2: passwords.password2,
+    }, {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    })
+}

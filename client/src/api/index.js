@@ -3,6 +3,7 @@ export const API_BASE = 'http://localhost:4000/api'
 // authentication
 export const GET_USER_BY_TOKEN = API_BASE + '/auth/userbytoken/'
 export const GET_USER_TOKEN = API_BASE + '/auth/login'
+export const UPDATE_USER_PASSWORD = API_BASE + '/auth/update-password'
 
 // users
 export const GET_ALL_USERS = API_BASE + '/users/'

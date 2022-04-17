@@ -1,11 +1,15 @@
+import 'react-contexify/dist/ReactContexify.css'
 import './static/styles/main.css'
+
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import Login from './pages/Login'
 import { UserContext } from './context/user'
 import { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
 import * as authApi from './api/auth'
+
+import Navbar from './components/Navbar'
+import Login from './pages/Login'
+import UpdatePassword from './pages/UpdatePassword'
 import Trombinoscope from './pages/Trombinoscope'
 import Timesheet from './pages/Timesheet'
 import History from './pages/History'
@@ -28,6 +32,16 @@ function App() {
 		checkAuth()
 	}, [cookies?.token])
 
+	useEffect(() => {
+		if (user?.updatePassword) {
+			navigate('/update-password')
+		} else {
+			if (pathname === '/update-password') {
+				navigate('/')
+			}
+		}
+	}, [user?.updatePassword, pathname])
+
 	// check if user is authenticated
 	async function checkAuth() {
 		if (cookies.token) {
@@ -36,7 +50,7 @@ function App() {
 
 			// redirect to app after login
 			if (pathname === '/login') {
-				navigate('/trombinoscope')
+				navigate('/')
 			}
 		} else {
 			navigate('/login')
@@ -68,9 +82,11 @@ function App() {
 			<div className="container py-5">
 				<Routes>
 					<Route path="/login" element={<Login />} />
+					<Route path="/update-password" element={<UpdatePassword />} />
 					<Route path="/trombinoscope" element={<Trombinoscope />} />
-					<Route path="/timesheet" element={<Timesheet />} />
 					<Route path="/history" element={<History />} />
+					<Route path="/timesheet" element={<Timesheet />} />
+					<Route path="/" element={<Timesheet />} />
 
 					{_adminRoutes()}
 

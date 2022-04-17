@@ -18,7 +18,7 @@ function AdminPosts() {
     async function reset() {
         setPost({
             id: '',
-            name: '' 
+            name: ''
         })
 
         await getPosts()

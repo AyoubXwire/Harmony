@@ -25,7 +25,6 @@ async function verifyAuth(req, res, next) {
 			}
 		})
 
-		delete user.password
 		req.user = user
 
 		next()
