@@ -11,7 +11,7 @@ router.get('/', verifyAuth, async function (req, res, next) {
 			projects = await prisma.project.findMany({
 				where: {
 					users: {
-						some: {
+						every: {
 							id: req.user.id
 						}
 					}

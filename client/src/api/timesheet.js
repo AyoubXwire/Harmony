@@ -18,3 +18,13 @@ export async function getUserTimesheets(token) {
     })
     return projects.data
 }
+
+export async function createTimesheet(token, timesheets) {
+    await axios.post(urls.CREATE_TIMESHEET, {
+        timesheets: timesheets
+    }, {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    })
+}
