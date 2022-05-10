@@ -32,16 +32,6 @@ function App() {
 		checkAuth()
 	}, [cookies?.token])
 
-	useEffect(() => {
-		if (user?.updatePassword) {
-			navigate('/update-password')
-		} else {
-			if (pathname === '/update-password') {
-				navigate('/')
-			}
-		}
-	}, [user?.updatePassword, pathname])
-
 	// check if user is authenticated
 	async function checkAuth() {
 		if (cookies.token) {

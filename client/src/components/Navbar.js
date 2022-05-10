@@ -23,6 +23,7 @@ function Navbar() {
                     { user?.role?.name === 'ADMIN' ? <li><Link to='/admin'>Admin</Link></li> : null }
                     <li><Link to='/trombinoscope'>Trombinoscope</Link></li>
                     <li><Link to='/timesheet'>My Timesheet</Link></li>
+                    <li><Link to='/update-password'>Update password</Link></li>
                     <li><a href="#" onClick={logout}>Logout</a></li>
                 </ul>
             )

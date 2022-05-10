@@ -43,7 +43,6 @@ router.put('/update-password', verifyAuth, async function (req, res, next) {
 			},
 			data: {
 				password: hashedPassword,
-				updatePassword: false
 			}
 		})
 
