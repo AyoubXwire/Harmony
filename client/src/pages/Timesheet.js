@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 function Projects() {
 
-    const [cookies, setCookie] = useCookies(['token'])
+    const [cookies] = useCookies(['token'])
     const [projects, setProjects] = useState([])
     const [timesheets, setTimesheets] = useState([])
 
@@ -67,10 +67,10 @@ function Projects() {
                 <div key={project.id} className="card my-4">
                     <h4 className="mb-3">{project.name}</h4>
                     <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-2">
                             <input className="form-control" onChange={(event) => updateTimesheet(project.id, event.target.value, null)} type="number" min="0" max="8" step="0.25" placeholder="time" />
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-10">
                             <input className="form-control col-md-6" onChange={(event) => updateTimesheet(project.id, null, event.target.value)} type="text" placeholder="comment" />
                         </div>
                     </div>

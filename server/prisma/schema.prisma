@@ -57,7 +57,7 @@ model ProjectAssign {
 model TimeSheet {
   id        Int      @id @default(autoincrement())
   date      DateTime
-  time      Int
+  time      Float
   comment   String
   userId    Int
   projectId Int

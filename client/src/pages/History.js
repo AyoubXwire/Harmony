@@ -15,8 +15,10 @@ function History() {
         if (timesheets?.length > 0) {
             return timesheets.map(timesheet => (
                 <div key={timesheet.id} className="card my-4">
-                    <h4 className="mb-3">{timesheet.name}</h4>
-                    <p>{timesheet.comment}</p>
+                    <p><strong>Date:</strong> {timesheet.date}</p>
+                    <p><strong>Project:</strong> {timesheet.project.name}</p>
+                    <p><strong>Time:</strong> {timesheet.time}h</p>
+                    <p className='m-0'><strong>Comment:</strong> {timesheet.comment}</p>
                 </div>
             ))
         }

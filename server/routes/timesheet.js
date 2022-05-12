@@ -12,6 +12,9 @@ router.get('/', verifyAuth, async function (req, res, next) {
             timesheets = await prisma.timeSheet.findMany({
                 where: {
                     userId: req.user.id
+                },
+                include: {
+                    project: true
                 }
             })
         } else {
