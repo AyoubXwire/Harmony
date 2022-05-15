@@ -1,7 +1,7 @@
 const express = require('express')
-const { timeSheet } = require('../db')
 const router = express.Router()
 const prisma = require('../db')
+const { getNextWorkDate } = require('../helpers/timesheet')
 const { verifyAuth } = require('../middleware/auth')
 
 router.get('/', verifyAuth, async function (req, res, next) {
@@ -12,6 +12,9 @@ router.get('/', verifyAuth, async function (req, res, next) {
             timesheets = await prisma.timeSheet.findMany({
                 where: {
                     userId: req.user.id
+                },
+                orderBy: {
+                    date: 'desc'
                 },
                 include: {
                     project: true
@@ -38,7 +41,7 @@ router.post('/', verifyAuth, async function (req, res, next) {
                 projectId: timesheet.projectId,
                 time: timesheet.time,
                 comment: timesheet.comment,
-                date: new Date().toISOString()
+                date: req.body.date
             })
         })
 
@@ -47,6 +50,28 @@ router.post('/', verifyAuth, async function (req, res, next) {
         })
 
 		res.status(200).send()
+	} catch (error) {
+		next(error)
+	}
+})
+
+router.get('/latest-date', verifyAuth, async function (req, res, next) {
+	try {
+        const lastDay = await prisma.timeSheet.findFirst({
+            where: {
+                userId: req.user.id
+            },
+            orderBy: {
+                date: 'desc'
+            },
+            select: {
+                date: true
+            }
+        })
+
+        lastDay.date = getNextWorkDate(lastDay.date)
+
+		res.json(lastDay)
 	} catch (error) {
 		next(error)
 	}
