@@ -1,5 +1,5 @@
 import 'react-contexify/dist/ReactContexify.css'
-import './static/styles/main.css'
+import './static/styles/main.min.css'
 
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import { UserContext } from './context/user'

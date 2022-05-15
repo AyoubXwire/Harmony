@@ -1,4 +1,6 @@
 @import 'base';
+@import 'navigation';
+@import 'admin';
 
 body {
     margin: 0;
@@ -12,40 +14,6 @@ body {
     margin: 0 auto;
 }
 
-.navigation {
-    background-color: $color-primary;
-    box-shadow: 0 5px 10px 2px $color-grey;
-    display: flex;
-    height: 60px;
-    
-    .container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: $color-light;
-
-        h2 {
-            margin: 0;
-        }
-
-        ul {
-            list-style: none;
-            display: flex;
-            align-items: center;
-            margin: 0;
-            padding: 0;
-
-            li {
-                margin: 0 20px;
-
-                a {
-                    text-decoration: none;
-                    color: $color-light;
-                }
-            }
-        }
-    }
-}
 .trombinoscope {
     .user-card {
         display: flex;
@@ -93,25 +61,5 @@ body {
 
     a {
         margin-left: 20px;
-    }
-}
-
-.admin-dashboard {
-    a {
-        text-decoration: none;
-        color: $color-dark;
-
-        .tab {
-            border: 1px solid $color-grey;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            
-            img {
-                padding: 20px 0;
-            }
-        }
     }
 }

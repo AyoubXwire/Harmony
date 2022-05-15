@@ -1,0 +1,19 @@
+.admin-dashboard {
+    a {
+        text-decoration: none;
+        color: $color-dark;
+
+        .tab {
+            border: 1px solid $color-grey;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            
+            img {
+                padding: 20px 0;
+            }
+        }
+    }
+}

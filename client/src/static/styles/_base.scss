@@ -25,22 +25,19 @@ a {
     display: inline-block;
     cursor: pointer;
 
+    &:hover {
+        transform: scale(.9);
+        text-decoration: none;
+    }
+
     &.primary {
         background-color: $color-primary;
         color: $color-light;
-
-        &:hover {
-            transform: scale(.9)
-        }
     }
 
     &.secondary {
         background-color: $color-secondary;
         color: $color-light;
-
-        &:hover {
-            transform: scale(.9);
-        }
     }
 }
 
