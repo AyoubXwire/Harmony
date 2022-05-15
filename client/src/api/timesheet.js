@@ -19,12 +19,23 @@ export async function getUserTimesheets(token) {
     return projects.data
 }
 
-export async function createTimesheet(token, timesheets) {
+export async function createTimesheet(token, timesheets, date) {
     await axios.post(urls.CREATE_TIMESHEET, {
-        timesheets: timesheets
+        timesheets: timesheets,
+        date: date
     }, {
         headers: {
             Authorization: 'Bearer ' + token
         }
     })
+}
+
+export async function getTimesheetLatestDate(token) {
+    const latestDate = await axios.get(urls.GET_LATEST_TIMESHEET_DATE, {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    })
+
+    return latestDate.data.date
 }

@@ -1,4 +1,8 @@
 
+/**
+ * @param {Object} queryObject object containing filters
+ * @returns {String} query string to use for get request filtering
+ */
 export function objectToQuery(queryObject) {
 
     let query = ''

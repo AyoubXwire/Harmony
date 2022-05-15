@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import moment from 'moment'
 import * as projectApi from '../api/projects'
 import * as timesheetApi from '../api/timesheet'
 import { useCookies } from 'react-cookie'
@@ -9,10 +10,16 @@ function Projects() {
     const [cookies] = useCookies(['token'])
     const [projects, setProjects] = useState([])
     const [timesheets, setTimesheets] = useState([])
+    const [latestDate, setLatestDate] = useState('')
 
     useEffect(() => {
-        projectApi.getUserProjects(cookies.token).then(projects => setProjects(projects))
+        fetchTimesheetData()
     }, [])
+
+    function fetchTimesheetData() {
+        projectApi.getUserProjects(cookies.token).then(projects => setProjects(projects))
+        timesheetApi.getTimesheetLatestDate(cookies.token).then(latestDate => setLatestDate(latestDate))
+    }
 
     async function updateTimesheet(projectId, time, comment) {
 
@@ -58,7 +65,8 @@ function Projects() {
             }
         })
 
-        timesheetApi.createTimesheet(cookies['token'], tempTimesheets)
+        timesheetApi.createTimesheet(cookies['token'], tempTimesheets, latestDate)
+        fetchTimesheetData()
     }
 
     function _projectsList() {
@@ -81,10 +89,33 @@ function Projects() {
         return null
     }
 
-    return (
-        <div className='timesheet'>
+    function _latestDate() {
+        if (latestDate) {
+            return (
+                <div className="text-center">
+                    <h2 className="m-0">{moment(latestDate).format('dddd DD MMM YYYY')}</h2>
+                    <p>{moment(latestDate).fromNow()}</p>
+                </div>
+            )
+        }
 
-            <div className="topbar">
+        return null
+    }
+
+    if (!latestDate) return (
+        <div className="timesheet">
+            <div className="text-center py-5">
+                <h2 className="mb-5">Your timesheet is up to date</h2>
+                <Link className="button primary" to='/history'>History</Link>
+            </div>
+        </div>
+    )
+
+    return (
+        <div className="timesheet">
+            {_latestDate()}
+
+            <div className="actionbar">
                 <div>
                     <Link className="button primary" to='/history'>History</Link>
                 </div>
@@ -92,7 +123,6 @@ function Projects() {
                     <button className="button secondary me-2">Reset</button>
                     <button className="button primary" onClick={save}>Save</button>
                 </div>
-                
             </div>
 
             {_projectsList()}
