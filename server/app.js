@@ -13,7 +13,6 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
-app.use('/api/', require('./routes/index'))
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/posts', require('./routes/posts'))
 app.use('/api/roles', require('./routes/roles'))

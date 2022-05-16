@@ -8,7 +8,9 @@ function getNextWorkDate(date) {
         date.setDate(date.getDate() + 1)
     } while (!(date.getDay() % 6))
 
-    if (date > Date.now()) {
+    let today = new Date()
+
+    if (date.getDay() > today.getDay()) {
         return null
     }
 

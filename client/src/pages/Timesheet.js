@@ -91,10 +91,13 @@ function Projects() {
 
     function _latestDate() {
         if (latestDate) {
+            let fromToday = moment(latestDate).diff(Date.now(), 'days')
+            fromToday = fromToday > 0 ? fromToday : null
+
             return (
                 <div className="text-center">
                     <h2 className="m-0">{moment(latestDate).format('dddd DD MMM YYYY')}</h2>
-                    <p>{moment(latestDate).fromNow()}</p>
+                    <p>{fromToday}</p>
                 </div>
             )
         }
