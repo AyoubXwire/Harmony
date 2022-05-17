@@ -44,7 +44,7 @@ router.get('/userbytoken', verifyAuth, async function (req, res) {
 
 router.put('/update-password', verifyAuth, async function (req, res, next) {
 	try {
-		if (!req.body.oldPassword || !req.body.password || req.body.password2) return res.status(400).send({ message: 'Make sure you provide all the fields' })
+		if (!req.body.oldPassword || !req.body.password || !req.body.password2) return res.status(400).send({ message: 'Make sure you provide all the fields' })
 
 		const isOldPasswordValid = await bcrypt.compare(req.body.oldPassword, req.user.password)
 		const isPasswordConfirmed = req.body.password === req.body.password2

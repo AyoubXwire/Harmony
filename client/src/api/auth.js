@@ -2,13 +2,13 @@ import axios from 'axios'
 import * as urls from './index'
 
 export async function getUserByToken(token) {
-    const user = await axios.get(urls.GET_USER_BY_TOKEN, {
+    const response = await axios.get(urls.GET_USER_BY_TOKEN, {
         headers: {
             Authorization: 'Bearer ' + token
         }
     })
 
-    return user.data.user
+    return response.data.user
 }
 
 export async function getUserToken(email, password) {
@@ -21,7 +21,7 @@ export async function getUserToken(email, password) {
 }
 
 export async function updateUserPassword(token, passwords) {
-    await axios.put(urls.UPDATE_USER_PASSWORD, {
+    const response = await axios.put(urls.UPDATE_USER_PASSWORD, {
         oldPassword: passwords.oldPassword,
         password: passwords.password,
         password2: passwords.password2,
@@ -30,4 +30,6 @@ export async function updateUserPassword(token, passwords) {
             Authorization: 'Bearer ' + token
         }
     })
+
+    return response
 }
