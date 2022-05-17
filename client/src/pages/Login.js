@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useCookies } from 'react-cookie'
 import * as authApi from '../api/auth'
+import { AlertContext, ALERT_TYPES } from '../context/alert'
 
 function Login() {
 
     const [cookies, setCookie] = useCookies(['token'])
-
+    const { pushAlert } = useContext(AlertContext)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -13,8 +14,13 @@ function Login() {
     async function login(event) {
         event.preventDefault()
 
-        const accessToken = await authApi.getUserToken(email, password)
-        setCookie('token', accessToken)
+        try {
+            const accessToken = await authApi.getUserToken(email, password)
+            pushAlert(ALERT_TYPES.success, 'Welcome')
+            setCookie('token', accessToken)
+        } catch ({ response }) {
+            pushAlert(ALERT_TYPES.error, response.data.message)
+        }
     }
 
     return (

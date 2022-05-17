@@ -102,7 +102,8 @@ router.post('/', async function (req, res) {
 		}
 	})
 
-	if (user || password !== password2) return res.sendStatus(403)
+	if (user) return res.status(403).send({ message: 'The email provided already exists' })
+	if (password !== password2) return res.status(403).send({ message: 'The password confirmation does not match' })
 
 	const hashedPassword = await bcrypt.hash(password, 10)
 

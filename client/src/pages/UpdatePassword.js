@@ -1,14 +1,14 @@
 import { useState, useContext } from 'react'
-import { UserContext } from "../context/user"
 import { useCookies } from 'react-cookie'
 import * as authApi from '../api/auth'
 import { useNavigate } from 'react-router-dom'
+import { AlertContext, ALERT_TYPES } from '../context/alert'
 
 function UpdatePassword() {
 
     const navigate = useNavigate()
-    const {user, setUser} = useContext(UserContext)
-    const [cookies, setCookie] = useCookies(['token'])
+    const { pushAlert } = useContext(AlertContext)
+    const [cookies] = useCookies(['token'])
 
     const [oldPassword, setOldPassword] = useState('')
     const [password, setPassword] = useState('')
@@ -16,8 +16,14 @@ function UpdatePassword() {
 
     async function updatePassword(event) {
         event.preventDefault()
-        await authApi.updateUserPassword(cookies['token'], {oldPassword, password, password2})
-        navigate('/')
+
+        try {
+            const response = await authApi.updateUserPassword(cookies['token'], { oldPassword, password, password2 })
+            pushAlert(ALERT_TYPES.success, response.data.message)
+            navigate('/')
+        } catch ({ response }) {
+            pushAlert(ALERT_TYPES.error, response.data.message)
+        }
     }
 
     return (

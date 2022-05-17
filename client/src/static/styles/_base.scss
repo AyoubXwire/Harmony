@@ -42,6 +42,21 @@ a {
     }
 }
 
+.alert {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 20px;
+
+    .btn-close {
+        opacity: 1;
+        
+        &:focus {
+            box-shadow: none;
+        }
+    }
+}
+
 .bordered {
     border: 1px solid $color-grey;
     border-radius: 5px;

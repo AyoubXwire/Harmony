@@ -5,7 +5,7 @@ import * as timesheetApi from '../api/timesheet'
 import { useCookies } from 'react-cookie'
 import { Link } from 'react-router-dom'
 
-function Projects() {
+function Timesheet() {
 
     const [cookies] = useCookies(['token'])
     const [projects, setProjects] = useState([])
@@ -133,4 +133,4 @@ function Projects() {
     )
 }
 
-export default Projects
+export default Timesheet
