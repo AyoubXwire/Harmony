@@ -1,16 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import moment from 'moment'
 import * as projectApi from '../api/projects'
 import * as timesheetApi from '../api/timesheet'
 import { useCookies } from 'react-cookie'
 import { Link } from 'react-router-dom'
+import { AlertContext, ALERT_TYPES } from '../context/alert'
 
 function Timesheet() {
 
     const [cookies] = useCookies(['token'])
+    const { pushAlert } = useContext(AlertContext)
     const [projects, setProjects] = useState([])
     const [timesheets, setTimesheets] = useState([])
     const [latestDate, setLatestDate] = useState('')
+    const [hourCount, setHourCount] = useState(0)
 
     useEffect(() => {
         fetchTimesheetData()
@@ -53,7 +56,20 @@ function Timesheet() {
             }
         }
 
+        await updateHourCount()
+
         setTimesheets(tempTimesheets)
+    }
+
+    async function updateHourCount() {
+        const timeInputs = document.querySelectorAll('.timepicker')
+
+        let count = 0
+        timeInputs.forEach(timepicker => {
+            count += Number(timepicker.value)
+        })
+
+        setHourCount(count)
     }
 
     async function save() {
@@ -64,6 +80,8 @@ function Timesheet() {
                 tempTimesheets.splice(index, 1)
             }
         })
+
+        if (hourCount !== 8) return pushAlert(ALERT_TYPES.success, 'Make sure your total is equal to 8 hours')
 
         timesheetApi.createTimesheet(cookies['token'], tempTimesheets, latestDate)
         fetchTimesheetData()
@@ -76,7 +94,7 @@ function Timesheet() {
                     <h4 className="mb-3">{project.name}</h4>
                     <div className="row">
                         <div className="col-md-2">
-                            <input className="form-control" onChange={(event) => updateTimesheet(project.id, event.target.value, null)} type="number" min="0" max="8" step="0.25" placeholder="time" />
+                            <input className="form-control timepicker" onChange={(event) => updateTimesheet(project.id, event.target.value, null)} type="number" min="0" max="8" step="0.25" placeholder="time" />
                         </div>
                         <div className="col-md-10">
                             <input className="form-control col-md-6" onChange={(event) => updateTimesheet(project.id, null, event.target.value)} type="text" placeholder="comment" />
@@ -92,7 +110,7 @@ function Timesheet() {
     function _latestDate() {
         if (latestDate) {
             let fromToday = moment(latestDate).diff(Date.now(), 'days')
-            fromToday = fromToday > 0 ? fromToday : null
+            fromToday = Math.abs(fromToday) > 0 ? Math.abs(fromToday) + ' days ago' : null
 
             return (
                 <div className="text-center">
@@ -105,9 +123,17 @@ function Timesheet() {
         return null
     }
 
+    function _hourCount() {
+        return (
+            <div className="text-center pb-5">
+                <h5 className='ms-3'><strong>Total hours:</strong> {hourCount}</h5>
+            </div>
+        )
+    }
+
     if (!latestDate) return (
         <div className="timesheet">
-            <div className="text-center py-5">
+            <div className="text-center pt-5">
                 <h2 className="mb-5">Your timesheet is up to date</h2>
                 <Link className="button primary" to='/history'>History</Link>
             </div>
@@ -117,6 +143,7 @@ function Timesheet() {
     return (
         <div className="timesheet">
             {_latestDate()}
+            {_hourCount()}
 
             <div className="actionbar">
                 <div>
