@@ -1,11 +1,8 @@
-const express = require('express')
-const router = express.Router()
-const prisma = require('../db')
-const { getNextWorkDate } = require('../helpers/timesheet')
-const { verifyAuth } = require('../middleware/auth')
+const prisma = require('../../prisma/db')
+const helpers = require('./helpers')
 
-router.get('/', verifyAuth, async function (req, res, next) {
-	try {
+async function getAll(req, res, next) {
+    try {
         let timesheets = []
 
         if (req.query.assigned) {
@@ -28,10 +25,10 @@ router.get('/', verifyAuth, async function (req, res, next) {
 	} catch (error) {
 		next(error)
 	}
-})
+}
 
-router.post('/', verifyAuth, async function (req, res, next) {
-	try {
+async function create(req, res, next) {
+    try {
         const timesheets = req.body.timesheets
         const tempData = []
 
@@ -53,10 +50,10 @@ router.post('/', verifyAuth, async function (req, res, next) {
 	} catch (error) {
 		next(error)
 	}
-})
+}
 
-router.get('/latest-date', verifyAuth, async function (req, res, next) {
-	try {
+async function getLatestDate(req, res, next) {
+    try {
         const lastDay = await prisma.timeSheet.findFirst({
             where: {
                 userId: req.user.id
@@ -69,12 +66,16 @@ router.get('/latest-date', verifyAuth, async function (req, res, next) {
             }
         })
 
-        lastDay.date = getNextWorkDate(lastDay.date)
+        lastDay.date = helpers.getNextWorkDate(lastDay.date)
 
 		res.json(lastDay)
 	} catch (error) {
 		next(error)
 	}
-})
+}
 
-module.exports = router
+module.exports = {
+    getAll,
+    create,
+    getLatestDate
+}

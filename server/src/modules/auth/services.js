@@ -1,12 +1,9 @@
-const express = require('express')
-const router = express.Router()
-const prisma = require('../db')
+const prisma = require('../../prisma/db')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const validator = require('validator')
-const { verifyAuth } = require('../middleware/auth')
 
-router.post('/login', async function (req, res) {
+async function login(req, res) {
 	try {
 		const email = req.body.email
 		const password = req.body.password
@@ -32,17 +29,17 @@ router.post('/login', async function (req, res) {
 	} catch (error) {
 		next(error)
 	}
-})
+}
 
-router.get('/userbytoken', verifyAuth, async function (req, res) {
+async function getUserByToken(req, res) {
 	try {
 		res.json({ user: req.user })
 	} catch (error) {
 		next(error)
 	}
-})
+}
 
-router.put('/update-password', verifyAuth, async function (req, res, next) {
+async function updatePassword(req, res, next) {
 	try {
 		if (!req.body.oldPassword || !req.body.password || !req.body.password2) return res.status(400).send({ message: 'Make sure you provide all the fields' })
 
@@ -67,6 +64,10 @@ router.put('/update-password', verifyAuth, async function (req, res, next) {
 	} catch (error) {
 		next(error)
 	}
-})
+}
 
-module.exports = router
+module.exports = {
+    login,
+    getUserByToken,
+    updatePassword
+}

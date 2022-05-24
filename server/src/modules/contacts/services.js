@@ -1,9 +1,6 @@
-const express = require('express')
-const router = express.Router()
-const prisma = require('../db')
-const { verifyAuth, verifyRole, AUTH_ROLES } = require('../middleware/auth')
+const prisma = require('../../prisma/db')
 
-router.get('/', verifyAuth, async function (req, res, next) {
+async function getAll(req, res, next) {
 	try {
 		const contacts = await prisma.clientContact.findMany({
 			include: {
@@ -15,9 +12,9 @@ router.get('/', verifyAuth, async function (req, res, next) {
 	} catch (error) {
 		next(error)
 	}
-})
+}
 
-router.post('/', verifyAuth, verifyRole(AUTH_ROLES.admin), async function (req, res, next) {
+async function create(req, res, next) {
 	try {
 		await prisma.clientContact.create({
 			data: {
@@ -32,9 +29,9 @@ router.post('/', verifyAuth, verifyRole(AUTH_ROLES.admin), async function (req, 
 	} catch (error) {
 		next(error)
 	}
-})
+}
 
-router.delete('/:id', verifyAuth, verifyRole(AUTH_ROLES.admin), async function (req, res, next) {
+async function remove(req, res, next) {
 	try {
 		const contactId = Number(req.params.id)
 
@@ -48,9 +45,9 @@ router.delete('/:id', verifyAuth, verifyRole(AUTH_ROLES.admin), async function (
 	} catch (error) {
 		next(error)
 	}
-})
+}
 
-router.put('/:id', verifyAuth, verifyRole(AUTH_ROLES.admin), async function (req, res, next) {
+async function update(req, res, next) {
 	try {
 		const contactId = Number(req.params.id)
 
@@ -70,6 +67,11 @@ router.put('/:id', verifyAuth, verifyRole(AUTH_ROLES.admin), async function (req
 	} catch (error) {
 		next(error)
 	}
-})
+}
 
-module.exports = router
+module.exports = {
+    getAll,
+    create,
+    remove,
+    update
+}

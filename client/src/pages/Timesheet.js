@@ -81,7 +81,7 @@ function Timesheet() {
             }
         })
 
-        if (hourCount !== 8) return pushAlert(ALERT_TYPES.success, 'Make sure your total is equal to 8 hours')
+        if (hourCount !== 8) return pushAlert(ALERT_TYPES.error, 'Make sure your total is equal to 8 hours')
 
         timesheetApi.createTimesheet(cookies['token'], tempTimesheets, latestDate)
         fetchTimesheetData()

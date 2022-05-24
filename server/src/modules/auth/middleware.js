@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
-const prisma = require('../db')
+const prisma = require('../../prisma/db')
 
-const AUTH_ROLES = {
+const ROLES = {
 	admin: 'ADMIN',
 	user: 'USER'
 }
@@ -39,7 +39,7 @@ function verifyRole(role) {
 }
 
 module.exports = {
-    AUTH_ROLES,
+    ROLES,
 	verifyAuth,
 	verifyRole
 }

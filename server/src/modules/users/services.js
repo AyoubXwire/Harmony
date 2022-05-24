@@ -1,10 +1,7 @@
-const express = require('express')
-const router = express.Router()
-const prisma = require('../db')
+const prisma = require('../../prisma/db')
 const bcrypt = require('bcrypt')
-const { verifyAuth, verifyRole, AUTH_ROLES } = require('../middleware/auth')
 
-router.get('/', verifyAuth, async function (req, res, next) {
+async function getAll(req, res, next) {
 	try {
 		const filters = {}
 
@@ -31,9 +28,9 @@ router.get('/', verifyAuth, async function (req, res, next) {
 	} catch (error) {
 		next(error)
 	}
-})
+}
 
-router.get('/:id', verifyAuth, async function (req, res, next) {
+async function getOne(req, res, next) {
 	try {
 		const userId = Number(req.params.id)
 
@@ -48,9 +45,9 @@ router.get('/:id', verifyAuth, async function (req, res, next) {
 	} catch (error) {
 		next(error)
 	}
-})
+}
 
-router.delete('/:id', verifyAuth, verifyRole(AUTH_ROLES.admin), async function (req, res, next) {
+async function remove(req, res, next) {
 	try {
 		const userId = Number(req.params.id)
 
@@ -64,9 +61,9 @@ router.delete('/:id', verifyAuth, verifyRole(AUTH_ROLES.admin), async function (
 	} catch (error) {
 		next(error)
 	}
-})
+}
 
-router.put('/:id', verifyAuth, verifyRole(AUTH_ROLES.admin), async function (req, res, next) {
+async function update(req, res, next) {
 	try {
 		const userId = Number(req.params.id)
 
@@ -86,9 +83,9 @@ router.put('/:id', verifyAuth, verifyRole(AUTH_ROLES.admin), async function (req
 	} catch (error) {
 		next(error)
 	}
-})
+}
 
-router.post('/', async function (req, res) {
+async function create(req, res) {
 	const email = req.body.email
 	const password = req.body.password
 	const password2 = req.body.password2
@@ -119,6 +116,12 @@ router.post('/', async function (req, res) {
 	})
 
 	res.status(200).send()
-})
+}
 
-module.exports = router
+module.exports = {
+    getAll,
+    getOne,
+    remove,
+    update,
+    create
+}
