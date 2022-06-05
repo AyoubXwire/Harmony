@@ -115,7 +115,7 @@ function Timesheet() {
             return (
                 <div className="text-center">
                     <h2 className="m-0">{moment(latestDate).format('dddd DD MMM YYYY')}</h2>
-                    <p>{fromToday}</p>
+                    <p>({fromToday})</p>
                 </div>
             )
         }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import * as projectApi from '../../api/projects'
 import { useCookies } from 'react-cookie'
+import moment from 'moment'
 
 function AdminProjects() {
 
@@ -11,7 +12,8 @@ function AdminProjects() {
         name: '',
         price: '',
         startDate: '',
-        endDate: ''
+        endDate: '',
+        users: [],
     })
 
     useEffect(() => {
@@ -24,7 +26,8 @@ function AdminProjects() {
             name: '',
             price: '',
             startDate: '',
-            endDate: '' 
+            endDate: '',
+            users: [],
         })
 
         await getProjects()
@@ -66,6 +69,11 @@ function AdminProjects() {
                 <tr key={_project.id}>
                     <th>{_project.id}</th>
                     <td>{_project.name}</td>
+                    <td>{moment(_project.startDate).format('DD-MM-YY')}</td>
+                    <td>{moment(_project.endDate).format('DD-MM-YY')}</td>
+                    <td>{_project.price} DH</td>
+                    <td>{_project._count.users}</td>
+                    <td>{_project.client.name}</td>
                     <td className="actions">
                         <a href="#" onClick={() => setProject(_project)}>Update</a>
                         <a href="#" onClick={() => deleteProject(_project.id)}>Delete</a>
@@ -82,7 +90,34 @@ function AdminProjects() {
             <div className="form-border my-5">
                 <form onSubmit={saveProject}>
                     <input className='form-control my-2' value={project.id} onChange={event => setProject({ ...project, id: event.target.value })} type='text' name='id' placeholder='project id' disabled />
-                    <input className='form-control my-2' value={project.name} onChange={event => setProject({ ...project, name: event.target.value })} type='text' name='name' placeholder='project name' />
+                    
+                    <div className="row">
+                        <div className="col-md-6">
+                            <input className='form-control my-2' value={project.name} onChange={event => setProject({ ...project, name: event.target.value })} type='text' name='name' placeholder='project name' />
+                        </div>
+                        <div className="col-md-6">
+                            <input className='form-control my-2' value={project.price} onChange={event => setProject({ ...project, price: event.target.value })} type='number' name='price' placeholder='project price' />
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-md-6">
+                            <input className='form-control my-2' value={project.startDate} onChange={event => setProject({ ...project, startDate: event.target.value })} type='date' name='start-date' placeholder='start date' />
+                        </div>
+                        <div className="col-md-6">
+                            <input className='form-control my-2' value={project.endDate} onChange={event => setProject({ ...project, endDate: event.target.value })} type='date' name='end-date' placeholder='end date' />
+                        </div>
+                    </div>
+
+                    <select className="form-control my-2" name="users" multiple>
+                        {
+                            project.users.map(_user => {
+                                return (
+                                    <option value={_user.id}>{_user.user.firstName + ' ' + _user.user.lastName}</option>
+                                )
+                            })
+                        }
+                    </select>
 
                     <div className="actions">
                         <input className='button secondary mt-2' type='reset' value='Reset' onClick={reset} />
@@ -95,7 +130,12 @@ function AdminProjects() {
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Project name</th>
+                        <th>Name</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Price</th>
+                        <th>Users</th>
+                        <th>Client</th>
                         <th></th>
                     </tr>
                 </thead>

@@ -72,7 +72,8 @@ function AdminUsers() {
                     <td>{_user.lastName + ' ' + _user.firstName}</td>
                     <td>{_user.email}</td>
                     <td>{_user.phone}</td>
-                    <td>{_user.post.name}</td>
+                    <td>{_user._count.projects}</td>
+                    <td>{_user.role.name}</td>
                     <td>{_user.role.name}</td>
                     <td className="actions">
                         <a href="#" onClick={() => { delete(_user.password); setUser(_user) }}>Update</a>
@@ -132,6 +133,7 @@ function AdminUsers() {
                         <th>name</th>
                         <th>email</th>
                         <th>phone</th>
+                        <th>projects</th>
                         <th>post</th>
                         <th>role</th>
                         <th></th>

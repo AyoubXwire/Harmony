@@ -15,7 +15,17 @@ async function getAll(req, res, next) {
 				}
 			})
 		} else {
-			projects = await prisma.project.findMany({})
+			projects = await prisma.project.findMany({
+				include: {
+					_count: true,
+					client: true,
+					users: {
+						include: {
+							user: true
+						}
+					}
+				}
+			})
 		}
 		
 		res.json(projects)
@@ -74,9 +84,48 @@ async function update(req, res, next) {
 	}
 }
 
+async function getAssignedUsers(req, res, next) {
+	try {
+		const projectId = Number(req.params.id)
+
+		const users = await prisma.projectAssign.findMany({
+			where: {
+				projectId: projectId
+			},
+			select: {
+				user: true
+			}
+		})
+
+		res.json(users)
+		
+	} catch (error) {
+		next(error)
+	}
+}
+
+async function assignUser(req, res, next) {
+	try {
+		const userId = Number(req.params.userId)
+		const projectId = Number(req.params.projectId)
+
+		await prisma.projectAssign.create({
+			data: {
+				projectId: projectId,
+				userId: userId
+			}
+		})
+		
+	} catch (error) {
+		next(error)
+	}
+}
+
 module.exports = {
     getAll,
     create,
     remove,
-    update
+    update,
+	getAssignedUsers,
+	assignUser,
 }

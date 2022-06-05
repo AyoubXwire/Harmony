@@ -1,4 +1,4 @@
-const prisma = require('../db')
+const prisma = require('./db')
 
 async function seed() {
     await prisma.userRole.createMany({

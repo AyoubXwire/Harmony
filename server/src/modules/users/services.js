@@ -19,6 +19,7 @@ async function getAll(req, res, next) {
 		const users = await prisma.user.findMany({
 			where: filters,
 			include: {
+				_count: true,
 				post: true,
 				role: true,
 			}

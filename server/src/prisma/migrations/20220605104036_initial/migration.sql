@@ -55,7 +55,7 @@ CREATE TABLE `ProjectAssign` (
 CREATE TABLE `TimeSheet` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `date` DATETIME(3) NOT NULL,
-    `time` INTEGER NOT NULL,
+    `time` DOUBLE NOT NULL,
     `comment` VARCHAR(191) NOT NULL,
     `userId` INTEGER NOT NULL,
     `projectId` INTEGER NOT NULL,

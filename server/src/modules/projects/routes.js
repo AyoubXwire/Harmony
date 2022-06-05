@@ -10,4 +10,8 @@ router.delete('/:id', auth.verifyAuth, auth.verifyRole(auth.ROLES.admin), servic
 
 router.put('/:id', auth.verifyAuth, auth.verifyRole(auth.ROLES.admin), services.update)
 
+router.get('/assigned/:id', auth.verifyAuth, auth.verifyRole(auth.ROLES.admin), services.getAssignedUsers)
+
+// router.post('/assigned/', auth.verifyAuth, auth.verifyRole(auth.ROLES.admin), services.assignUser)
+
 module.exports = router

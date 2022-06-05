@@ -10,7 +10,7 @@
 
     let today = new Date()
 
-    if (date.getDay() > today.getDay()) {
+    if (date.getMonth() > today.getMonth() && date.getDay() > today.getDay()) {
         return null
     }
 

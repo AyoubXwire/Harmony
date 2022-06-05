@@ -80,7 +80,7 @@ function AdminContacts() {
 
     return (
         <div>
-            <h1 className="text-center">Manage clients</h1>
+            <h1 className="text-center">Manage contacts</h1>
 
             <div className="form-border my-5">
                 <form onSubmit={saveContact}>
