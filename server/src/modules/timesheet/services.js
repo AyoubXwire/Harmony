@@ -14,11 +14,20 @@ async function getAll(req, res, next) {
                     date: 'desc'
                 },
                 include: {
-                    project: true
+                    project: true,
+                    user: true
                 }
             })
         } else {
-            timesheets = await prisma.timeSheet.findMany({})
+            timesheets = await prisma.timeSheet.findMany({
+                include: {
+                    project: true,
+                    user: true
+                },
+                orderBy: {
+                    date: 'desc'
+                }
+            })
         }
 		
 		res.json(timesheets)
