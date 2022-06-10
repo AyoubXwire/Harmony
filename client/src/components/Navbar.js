@@ -19,31 +19,50 @@ function Navbar() {
     function _links() {
         if (user?.id) {
             return (
-                <ul>
+                <>
                     { user?.role?.name === 'ADMIN' ? <li><Link to='/admin'>Admin</Link></li> : null }
                     <li><Link to='/trombinoscope'>Trombinoscope</Link></li>
                     <li><Link to='/timesheet'>My Timesheet</Link></li>
-                    <li><Link to='/update-password'>Update password</Link></li>
-                    <li><a href="#" onClick={logout}>Logout</a></li>
-                </ul>
-            )
-        } else {
-            return (
-                <ul>
-                    <li><Link to='/login'>Login</Link></li>
-                </ul>
+                    <li className="sz-dropdown">
+                        <div>
+                            <a href="#">Profile</a>
+                            <span className="sz-dropdown-btn">
+                                <div className="sz-dropdown-burger">
+                                    <div className="sz-dropdown-line1"></div>
+                                    <div className="sz-dropdown-line2"></div>
+                                </div>
+                            </span>
+                        </div>
+                        <ul className="sz-submenu">
+                            <li><Link to='/update-password'>Update password</Link></li>
+                            <li><a href="#" onClick={logout}>Logout</a></li>
+                        </ul>
+                    </li>
+                </>
             )
         }
     }
 
     return (
-        <div className="navigation">
-            <div className="container">
-                <h2>Harmony</h2>
+        <>
+            <header className="sz-navbar">
+                <nav className="sz-container container">
+                    <div className="sz-logo"><h2 className="m-0">Harmony</h2></div>
 
-                {_links()}
-            </div>
-        </div>
+                        <ul className="sz-menu">
+                            {_links()}
+                        </ul>
+                        
+                    <div className="sz-burger">
+                        <div className="sz-line1"></div>
+                        <div className="sz-line2"></div>
+                        <div className="sz-line3"></div>
+                    </div>
+                </nav>
+            </header>
+
+            <div className="sz-navbar-space"></div>
+        </>
     )
 }
 
