@@ -39,7 +39,7 @@ function Trombinoscope() {
                         <img className='avatar' src={'https://ui-avatars.com/api/?background=A434AE66&color=A434AE&name=' + _user.firstName + '+' + _user.lastName} alt={_user.firstName + ' ' + _user.lastName} />
                         <div className='content'>
                             <h4>{_user.firstName + ' ' + _user.lastName}</h4>
-                            <p>Post: {_user.post.name}</p>
+                            <p>Post: {_user.post?.name}</p>
                             <p>Email: <a href={'mailto:' + _user.email}>{_user.email}</a></p>
                             <p>Phone: <a href={'tel:' + _user.phone}>{_user.phone}</a></p>
                         </div>

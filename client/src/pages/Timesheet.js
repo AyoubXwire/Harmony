@@ -83,8 +83,16 @@ function Timesheet() {
 
         if (hourCount !== 8) return pushAlert(ALERT_TYPES.error, 'Make sure your total is equal to 8 hours')
 
-        timesheetApi.createTimesheet(cookies['token'], tempTimesheets, latestDate)
+        await timesheetApi.createTimesheet(cookies['token'], tempTimesheets, latestDate)
+        pushAlert(ALERT_TYPES.success, 'Timesheet updated successfully')
+        reset()
         fetchTimesheetData()
+    }
+
+    async function reset() {
+        const inputs = document.querySelectorAll('.timepicker, .comment')
+        inputs.forEach(input => input.value = '')
+        setHourCount(0)
     }
 
     function _projectsList() {
@@ -97,7 +105,7 @@ function Timesheet() {
                             <input className="form-control timepicker" onChange={(event) => updateTimesheet(project.id, event.target.value, null)} type="number" min="0" max="8" step="0.25" placeholder="time" />
                         </div>
                         <div className="col-md-10">
-                            <input className="form-control col-md-6" onChange={(event) => updateTimesheet(project.id, null, event.target.value)} type="text" placeholder="comment" />
+                            <input className="form-control col-md-6 comment" onChange={(event) => updateTimesheet(project.id, null, event.target.value)} type="text" placeholder="comment" />
                         </div>
                     </div>
                 </div>
@@ -150,7 +158,7 @@ function Timesheet() {
                     <Link className="button primary" to='/history'>History</Link>
                 </div>
                 <div>
-                    <button className="button secondary me-2">Reset</button>
+                    <button className="button secondary me-2" onClick={reset}>Reset</button>
                     <button className="button primary" onClick={save}>Save</button>
                 </div>
             </div>

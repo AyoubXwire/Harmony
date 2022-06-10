@@ -47,13 +47,18 @@ async function remove(req, res, next) {
 async function update(req, res, next) {
 	try {
 		const postId = Number(req.params.id)
+		const postUsers = req.body.postUsers
 
 		await prisma.userPost.update({
 			where: {
 				id: postId
 			},
 			data: {
-				name: req.body.name
+				name: req.body.name,
+				users: {
+					set: [],
+					connect: [{ id: 1 }, { id: 4 }]
+				}
 			}
 		})
 
@@ -67,5 +72,5 @@ module.exports = {
     getAll,
     create,
     remove,
-    update
+    update,
 }
