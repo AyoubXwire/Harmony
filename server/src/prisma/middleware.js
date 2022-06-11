@@ -1,4 +1,4 @@
-const prisma = require('../db')
+import prisma from '#prisma'
 
 prisma.$use(async (params, next) => {
     // Manipulate params here

@@ -1,12 +1,12 @@
-const jwt = require('jsonwebtoken')
-const prisma = require('../../prisma/db')
+import prisma from '#prisma'
+import jwt from 'jsonwebtoken'
 
-const ROLES = {
+export const ROLES = {
 	admin: 'ADMIN',
 	user: 'USER'
 }
 
-async function verifyAuth(req, res, next) {
+export async function verifyAuth(req, res, next) {
 	const authHeader = req.headers['authorization']
 	const token = authHeader && authHeader.split(' ')[1]
 
@@ -31,15 +31,9 @@ async function verifyAuth(req, res, next) {
 	})
 }
 
-function verifyRole(role) {
+export function verifyRole(role) {
 	return (req, res, next) => {
 		if (req.user.role.name !== role) return res.status(403).send({ message: 'You do not have the permission to do that' })
 		next()
 	}
-}
-
-module.exports = {
-    ROLES,
-	verifyAuth,
-	verifyRole
 }

@@ -1,6 +1,8 @@
-const router = require('express').Router()
-const auth = require('../auth/middleware')
-const services = require('./services')
+import { Router } from 'express'
+import * as auth from '#modules/auth/middleware.js'
+import * as services from './services.js'
+
+const router = Router()
 
 router.get('/', auth.verifyAuth, services.getAll)
 
@@ -10,4 +12,4 @@ router.delete('/:id', auth.verifyAuth, auth.verifyRole(auth.ROLES.admin), servic
 
 router.put('/:id', auth.verifyAuth, auth.verifyRole(auth.ROLES.admin), services.update)
 
-module.exports = router
+export default router

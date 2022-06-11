@@ -1,9 +1,9 @@
-require('dotenv').config()
+import 'dotenv/config'
 
-const express = require('express')
-const cookieParser = require('cookie-parser')
-const logger = require('morgan')
-const cors = require('cors')
+import express from 'express'
+import cookieParser from 'cookie-parser'
+import logger from 'morgan'
+import cors from 'cors'
 
 const app = express()
 
@@ -13,13 +13,23 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
-app.use('/api/auth', require('./modules/auth/routes'))
-app.use('/api/posts', require('./modules/posts/routes'))
-app.use('/api/roles', require('./modules/roles/routes'))
-app.use('/api/users', require('./modules/users/routes'))
-app.use('/api/projects', require('./modules/projects/routes'))
-app.use('/api/clients', require('./modules/clients/routes'))
-app.use('/api/contacts', require('./modules/contacts/routes'))
-app.use('/api/timesheet', require('./modules/timesheet/routes'))
+// routes
+import authRouter from '#modules/auth/routes.js'
+import postsRouter from '#modules/posts/routes.js'
+import rolesRouter from '#modules/roles/routes.js'
+import usersRouter from '#modules/users/routes.js'
+import projectsRouter from '#modules/projects/routes.js'
+import clientsRouter from '#modules/clients/routes.js'
+import contactsRouter from '#modules/contacts/routes.js'
+import timesheetRouter from '#modules/timesheet/routes.js'
 
-module.exports = app
+app.use('/api/auth', authRouter)
+app.use('/api/posts', postsRouter)
+app.use('/api/roles', rolesRouter)
+app.use('/api/users', usersRouter)
+app.use('/api/projects', projectsRouter)
+app.use('/api/clients', clientsRouter)
+app.use('/api/contacts', contactsRouter)
+app.use('/api/timesheet', timesheetRouter)
+
+export default app

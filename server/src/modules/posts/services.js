@@ -1,6 +1,6 @@
-const prisma = require('../../prisma/db')
+import prisma from '#prisma'
 
-async function getAll(req, res, next) {
+export async function getAll(req, res, next) {
 	try {
 		const posts = await prisma.userPost.findMany({
 			include: {
@@ -14,7 +14,7 @@ async function getAll(req, res, next) {
 	}
 }
 
-async function create(req, res, next) {
+export async function create(req, res, next) {
 	try {
 		await prisma.userPost.create({
 			data: {
@@ -28,7 +28,7 @@ async function create(req, res, next) {
 	}
 }
 
-async function remove(req, res, next) {
+export async function remove(req, res, next) {
 	try {
 		const postId = Number(req.params.id)
 
@@ -44,7 +44,7 @@ async function remove(req, res, next) {
 	}
 }
 
-async function update(req, res, next) {
+export async function update(req, res, next) {
 	try {
 		const postId = Number(req.params.id)
 		const postUsers = req.body.postUsers
@@ -66,11 +66,4 @@ async function update(req, res, next) {
 	} catch (error) {
 		next(error)
 	}
-}
-
-module.exports = {
-    getAll,
-    create,
-    remove,
-    update,
 }

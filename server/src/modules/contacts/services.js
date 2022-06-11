@@ -1,6 +1,6 @@
-const prisma = require('../../prisma/db')
+import prisma from '#prisma'
 
-async function getAll(req, res, next) {
+export async function getAll(req, res, next) {
 	try {
 		const contacts = await prisma.clientContact.findMany({
 			include: {
@@ -14,7 +14,7 @@ async function getAll(req, res, next) {
 	}
 }
 
-async function create(req, res, next) {
+export async function create(req, res, next) {
 	try {
 		await prisma.clientContact.create({
 			data: {
@@ -31,7 +31,7 @@ async function create(req, res, next) {
 	}
 }
 
-async function remove(req, res, next) {
+export async function remove(req, res, next) {
 	try {
 		const contactId = Number(req.params.id)
 
@@ -47,7 +47,7 @@ async function remove(req, res, next) {
 	}
 }
 
-async function update(req, res, next) {
+export async function update(req, res, next) {
 	try {
 		const contactId = Number(req.params.id)
 
@@ -67,11 +67,4 @@ async function update(req, res, next) {
 	} catch (error) {
 		next(error)
 	}
-}
-
-module.exports = {
-    getAll,
-    create,
-    remove,
-    update
 }

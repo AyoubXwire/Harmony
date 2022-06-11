@@ -1,6 +1,6 @@
-const prisma = require('../../prisma/db')
+import prisma from '#prisma'
 
-async function getAll(req, res, next) {
+export async function getAll(req, res, next) {
 	try {
 		const roles = await prisma.userRole.findMany({
 			include: {
@@ -12,8 +12,4 @@ async function getAll(req, res, next) {
 	} catch (error) {
 		next(error)
 	}
-}
-
-module.exports = {
-    getAll
 }

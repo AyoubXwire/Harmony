@@ -1,9 +1,9 @@
 
 /**
- * @param {Date} date last date that was filled in the timesheet
- * @returns {Date} next non weekend day that should be filled next in the timesheet
- */
- function getNextWorkDate(date) {
+* @param {Date} date last date that was filled in the timesheet
+* @returns {Date} next non weekend day that should be filled next in the timesheet
+*/
+export function getNextWorkDate(date) {
     do {
         date.setDate(date.getDate() + 1)
     } while (!(date.getDay() % 6))
@@ -15,8 +15,4 @@
     }
 
     return date
-}
-
-module.exports = {
-    getNextWorkDate
 }

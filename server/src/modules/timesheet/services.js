@@ -1,7 +1,7 @@
-const prisma = require('../../prisma/db')
-const helpers = require('./helpers')
+import prisma from '#prisma'
+import * as helpers from './helpers.js'
 
-async function getAll(req, res, next) {
+export async function getAll(req, res, next) {
     try {
         let timesheets = []
 
@@ -36,7 +36,7 @@ async function getAll(req, res, next) {
 	}
 }
 
-async function create(req, res, next) {
+export async function create(req, res, next) {
     try {
         const timesheets = req.body.timesheets
         const tempData = []
@@ -61,7 +61,7 @@ async function create(req, res, next) {
 	}
 }
 
-async function getLatestDate(req, res, next) {
+export async function getLatestDate(req, res, next) {
     try {
         const lastDay = await prisma.timeSheet.findFirst({
             where: {
@@ -83,8 +83,3 @@ async function getLatestDate(req, res, next) {
 	}
 }
 
-module.exports = {
-    getAll,
-    create,
-    getLatestDate
-}

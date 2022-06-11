@@ -4,14 +4,15 @@
  * Module dependencies.
  */
 
-const app = require('../src/app')
-const debug = require('debug')('erp-back:server')
-const http = require('http')
+import app from '../src/app.js'
+import debugLib from 'debug'
+import http from 'http'
+
+const debug = debugLib('erp-back:server')
 
 /**
  * Get port from environment and store in Express.
  */
-
 const port = normalizePort(process.env.PORT || '4000')
 app.set('port', port)
 

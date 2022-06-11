@@ -1,7 +1,7 @@
-const prisma = require('../../prisma/db')
-const bcrypt = require('bcrypt')
+import prisma from '#prisma'
+import bcrypt from 'bcrypt'
 
-async function getAll(req, res, next) {
+export async function getAll(req, res, next) {
 	try {
 		const filters = {}
 
@@ -31,7 +31,7 @@ async function getAll(req, res, next) {
 	}
 }
 
-async function getOne(req, res, next) {
+export async function getOne(req, res, next) {
 	try {
 		const userId = Number(req.params.id)
 
@@ -48,7 +48,7 @@ async function getOne(req, res, next) {
 	}
 }
 
-async function remove(req, res, next) {
+export async function remove(req, res, next) {
 	try {
 		const userId = Number(req.params.id)
 
@@ -64,7 +64,7 @@ async function remove(req, res, next) {
 	}
 }
 
-async function update(req, res, next) {
+export async function update(req, res, next) {
 	try {
 		const userId = Number(req.params.id)
 
@@ -86,7 +86,7 @@ async function update(req, res, next) {
 	}
 }
 
-async function create(req, res) {
+export async function create(req, res) {
 	const email = req.body.email
 	const password = req.body.password
 	const password2 = req.body.password2
@@ -119,10 +119,3 @@ async function create(req, res) {
 	res.status(200).send()
 }
 
-module.exports = {
-    getAll,
-    getOne,
-    remove,
-    update,
-    create
-}
