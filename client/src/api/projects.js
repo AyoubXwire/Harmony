@@ -39,7 +39,10 @@ export async function deleteProject(token, projectId) {
 
 export async function updateProject(token, projectId, project) {
     await axios.put(urls.UPDATE_PROJECT + projectId, {
-        name: project.name
+        name: project.name,
+        price: project.price,
+        startDate: new Date(project.startDate),
+        endDate: new Date(project.endDate),
     }, {
         headers: {
             Authorization: 'Bearer ' + token

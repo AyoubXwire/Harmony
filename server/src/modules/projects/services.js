@@ -74,7 +74,10 @@ export async function update(req, res, next) {
 				id: projectId
 			},
 			data: {
-				name: req.body.name
+				name: req.body.name,
+				price: Number(req.body.price),
+				startDate: req.body.startDate,
+        		endDate: req.body.endDate,
 			}
 		})
 
