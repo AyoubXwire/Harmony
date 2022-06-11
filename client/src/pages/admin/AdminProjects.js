@@ -1,32 +1,40 @@
 import { useState, useEffect } from 'react'
-import * as projectApi from '../../api/projects'
+import * as projectApi from '#api/projects'
+import * as userApi from '#api/users'
 import { useCookies } from 'react-cookie'
 import moment from 'moment'
 
 function AdminProjects() {
 
     const [cookies] = useCookies(['token'])
+    const [users, setUsers] = useState([])
     const [projects, setProjects] = useState([])
     const [project, setProject] = useState({
         id: '',
         name: '',
         price: '',
-        startDate: '',
-        endDate: '',
+        startDate: Date.now(),
+        endDate: Date.now(),
         users: [],
     })
 
     useEffect(() => {
         getProjects()
+        getUsers()
     }, [])
+
+    async function getUsers() {
+        const users = await userApi.getUsers(cookies.token)
+        setUsers(users)
+    }
 
     async function reset() {
         setProject({
             id: '',
             name: '',
             price: '',
-            startDate: '',
-            endDate: '',
+            startDate: Date.now(),
+            endDate: Date.now(),
             users: [],
         })
 
@@ -83,6 +91,26 @@ function AdminProjects() {
         }
     }
 
+    function _usersList() {
+        return users?.map(_user => {
+            let isFound = false
+
+            for (const projectUser of project?.users) {
+                if (_user.id === projectUser.user.id) {
+                    isFound = true
+                    break
+                }
+            }
+
+            return (
+                <div key={_user.id} className="item">
+                    <input id={_user.id} type="checkbox" checked={isFound} onChange={event => event.target.checked = true} />
+                    <p>{_user.firstName + ' ' + _user.lastName}</p>
+                </div>
+            )
+        })
+    }
+
     return (
         <div>
             <h1 className="text-center">Manage projects</h1>
@@ -102,22 +130,16 @@ function AdminProjects() {
 
                     <div className="row">
                         <div className="col-md-6">
-                            <input className='form-control my-2' value={project.startDate} onChange={event => setProject({ ...project, startDate: event.target.value })} type='date' name='start-date' placeholder='start date' />
+                            <input className='form-control my-2' value={moment(project.startDate).format('yyyy-MM-DD')} onChange={event => setProject({ ...project, startDate: event.target.value })} type='date' name='start-date' placeholder='start date' />
                         </div>
                         <div className="col-md-6">
-                            <input className='form-control my-2' value={project.endDate} onChange={event => setProject({ ...project, endDate: event.target.value })} type='date' name='end-date' placeholder='end date' />
+                            <input className='form-control my-2' value={moment(project.endDate).format('yyyy-MM-DD')} onChange={event => setProject({ ...project, endDate: event.target.value })} type='date' name='end-date' placeholder='end date' />
                         </div>
                     </div>
 
-                    <select className="form-control my-2" name="users" multiple>
-                        {
-                            project.users.map(_user => {
-                                return (
-                                    <option value={_user.id}>{_user.user.firstName + ' ' + _user.user.lastName}</option>
-                                )
-                            })
-                        }
-                    </select>
+                    <div className="form-control checkbox-list my-2">
+                        {_usersList()}
+                    </div>
 
                     <div className="actions">
                         <input className='button secondary mt-2' type='reset' value='Reset' onClick={reset} />

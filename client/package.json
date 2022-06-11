@@ -17,6 +17,14 @@
     "react-scripts": "5.0.0",
     "web-vitals": "^2.1.4"
   },
+  "imports": {
+    "#api/*": "./src/api/*",
+    "#components/*": "./src/components/*",
+    "#context/*": "./src/context/*",
+    "#helpers/*": "./src/helpers/*",
+    "#pages/*": "./src/pages/*",
+    "#static/*": "./src/static/*"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

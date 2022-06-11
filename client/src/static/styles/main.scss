@@ -63,3 +63,18 @@ body {
         margin-left: 20px;
     }
 }
+
+.checkbox-list {
+    height: 100px;
+    overflow-y: scroll;
+
+    .item {
+        display: flex;
+        align-items: center;
+
+        p {
+            margin: 0;
+            padding-left: 10px;
+        }
+    }
+}

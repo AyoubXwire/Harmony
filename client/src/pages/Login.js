@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import { useCookies } from 'react-cookie'
-import * as authApi from '../api/auth'
-import { AlertContext, ALERT_TYPES } from '../context/alert'
+import * as authApi from '#api/auth'
+import { AlertContext, ALERT_TYPES } from '#context/alert'
 
 function Login() {
 

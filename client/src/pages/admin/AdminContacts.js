@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import * as contactApi from '../../api/contacts'
+import * as contactApi from '#api/contacts'
 import { useCookies } from 'react-cookie'
 
 function AdminContacts() {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import * as postApi from '../../api/posts'
+import * as postApi from '#api/posts'
 import { useCookies } from 'react-cookie'
 
 function AdminPosts() {

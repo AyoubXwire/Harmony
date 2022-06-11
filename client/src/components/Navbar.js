@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { UserContext } from "../context/user"
+import { UserContext } from "#context/user"
 import { useCookies } from 'react-cookie'
 import { Link } from 'react-router-dom'
 

@@ -1,8 +1,8 @@
 import { useState, useContext } from 'react'
 import { useCookies } from 'react-cookie'
-import * as authApi from '../api/auth'
+import * as authApi from '#api/auth'
 import { useNavigate } from 'react-router-dom'
-import { AlertContext, ALERT_TYPES } from '../context/alert'
+import { AlertContext, ALERT_TYPES } from '#context/alert'
 
 function UpdatePassword() {
 

@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react'
 import moment from 'moment'
-import * as projectApi from '../api/projects'
-import * as timesheetApi from '../api/timesheet'
+import * as projectApi from '#api/projects'
+import * as timesheetApi from '#api/timesheet'
 import { useCookies } from 'react-cookie'
 import { Link } from 'react-router-dom'
-import { AlertContext, ALERT_TYPES } from '../context/alert'
+import { AlertContext, ALERT_TYPES } from '#context/alert'
 
 function Timesheet() {
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import * as userApi from '../api/users'
-import * as postApi from '../api/posts'
+import * as userApi from '#api/users'
+import * as postApi from '#api/posts'
 import { useCookies } from 'react-cookie'
 
 function Trombinoscope() {

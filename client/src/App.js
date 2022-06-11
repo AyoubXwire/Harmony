@@ -1,32 +1,32 @@
 import 'react-contexify/dist/ReactContexify.css'
-import './static/styles/main.min.css'
+import '#static/styles/main.min.css'
 
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
-import { UserContext } from './context/user'
-import { AlertContext } from './context/alert'
+import { UserContext } from '#context/user'
+import { AlertContext } from '#context/alert'
 import { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
-import * as authApi from './api/auth'
+import * as authApi from '#api/auth'
 
 // Components
-import Navbar from './components/Navbar'
-import Alert from './components/Alert'
+import Navbar from '#components/Navbar'
+import Alert from '#components/Alert'
 
 // Pages
-import Login from './pages/Login'
-import UpdatePassword from './pages/UpdatePassword'
-import Trombinoscope from './pages/Trombinoscope'
-import Timesheet from './pages/Timesheet'
-import History from './pages/History'
+import Login from '#pages/Login'
+import UpdatePassword from '#pages/UpdatePassword'
+import Trombinoscope from '#pages/Trombinoscope'
+import Timesheet from '#pages/Timesheet'
+import History from '#pages/History'
 
 // Admin pages
-import Admin from './pages/admin/Admin'
-import AdminPosts from './pages/admin/AdminPosts'
-import AdminUsers from './pages/admin/AdminUsers'
-import AdminClients from './pages/admin/AdminClients'
-import AdminContacts from './pages/admin/AdminContacts'
-import AdminProjects from './pages/admin/AdminProjects'
-import AdminTimesheets from './pages/admin/AdminTimesheets'
+import Admin from '#pages/admin/Admin'
+import AdminPosts from '#pages/admin/AdminPosts'
+import AdminUsers from '#pages/admin/AdminUsers'
+import AdminClients from '#pages/admin/AdminClients'
+import AdminContacts from '#pages/admin/AdminContacts'
+import AdminProjects from '#pages/admin/AdminProjects'
+import AdminTimesheets from '#pages/admin/AdminTimesheets'
 
 function App() {
 

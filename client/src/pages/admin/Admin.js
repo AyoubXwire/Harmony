@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
 
 // icons
-import postsIcon from '../../static/images/posts.png'
-import usersIcon from '../../static/images/users.png'
-import clientsIcon from '../../static/images/clients.png'
-import contactsIcon from '../../static/images/contacts.png'
-import projectsIcon from '../../static/images/projects.png'
-import timesheetsIcon from '../../static/images/timesheets.png'
+import postsIcon from '#static/images/posts.png'
+import usersIcon from '#static/images/users.png'
+import clientsIcon from '#static/images/clients.png'
+import contactsIcon from '#static/images/contacts.png'
+import projectsIcon from '#static/images/projects.png'
+import timesheetsIcon from '#static/images/timesheets.png'
 
 function Admin() {
 
